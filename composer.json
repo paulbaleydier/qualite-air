@@ -1,0 +1,21 @@
+{
+    "name": "paul/qualiter-air",
+    "description": "Projet BTS SN 2022-2024",
+    "autoload": {
+        "psr-4": {
+            "Model\\": "src/Model",
+            "Controller\\": "src/Controller",
+            "Entity\\": "src/Entity",
+            "View\\": "src/View",
+            "Others\\": "src/Others"
+        }
+    },
+    "authors": [
+        {
+            "name": "Paul Baleydier"
+        }
+    ],
+    "require": {
+        "vlucas/phpdotenv": "^5.6"
+    }
+}
