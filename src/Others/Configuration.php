@@ -5,20 +5,20 @@ use Controller\Controller;
 use Entity\Entity;
 use Model\Model;
 use Dotenv\Dotenv;
-
+use Model\Test;
 
 class Configuration {
 
     private static $dotenv;
    
     public static function init() {
-        echo "Hello, World !";
 
         // Immplemantation du .env 
         self::$dotenv = Dotenv::createImmutable(dirname(dirname(__DIR__)));
         self::$dotenv->load();
 
-        // var_dump( self::get("DB_DATABASE")) ;
+        echo Test::test();
+
     }
 
     public static function get(string $path) {
