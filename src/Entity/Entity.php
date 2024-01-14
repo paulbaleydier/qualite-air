@@ -2,10 +2,18 @@
 namespace Entity;
 
 class Entity {
-    public static function init() {
-        echo "Hello, World !";
 
+
+    public function __construct(array $data = array()) {
+        if (!empty($data)) {
+            foreach ($data as $key => $value) {
+                if (property_exists($this, $key)) {
+                    $this->$key = $value;
+                }
+            }
+        }
     }
+
 }
 
 ?>
