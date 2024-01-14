@@ -2,9 +2,7 @@
     RewriteEngine On
     RewriteBase /IRUP/qualiter-air/
 
-    # Redirection vers le répertoire webroot
     RewriteRule ^$ webroot/ [L]
 
-    # Reste de vos règles de réécriture, si nécessaire...
 
 </IfModule>
