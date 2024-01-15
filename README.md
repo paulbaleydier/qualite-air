@@ -8,6 +8,7 @@
 Pour la configuration, il peut être nécessaire de revoir la fonction `renderPage`.
 
 
-
+## Autres Lien
+- **Font Awesome 6** https://use.fontawesome.com/releases/v6.5.1/fontawesome-free-6.5.1-web.zip
 
 Projet BTS SN 2022 - 2024

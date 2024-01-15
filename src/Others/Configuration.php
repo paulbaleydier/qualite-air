@@ -54,7 +54,7 @@ class Configuration
 
         if (class_exists($className)) {
             $view = new $className();
-            $view->init();
+            $view->render();
         } else {
             echo "Class not found";
         }
