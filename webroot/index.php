@@ -3,8 +3,6 @@
 
 require ('../vendor/autoload.php');
 
-use Model\User as UserManager;
-use Entity\User as UserEntity;
 use Others\Configuration;
 
 error_reporting(E_ALL);

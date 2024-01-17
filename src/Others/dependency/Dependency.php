@@ -13,7 +13,7 @@ class Dependency {
         DepEnum::FONTAWESOME_6_5_1
     ];
 
-    public static function loadDependency(array|null $dependency = null ) {
+    public static function loadDependency(array|null $dependency = null , string $class_call) {
         
         $js = ""; $css = "";
         
@@ -52,10 +52,48 @@ class Dependency {
             }
             
         }
-        
 
+        // Load js and css of view 
+
+        if ( class_exists($class_call) ) {
+            $defaultDir = dirname(dirname(dirname(__DIR__))) . "/webroot";
+            $className = substr($class_call, strrpos($class_call, '\\') + 1 );
+            if ( is_dir($defaultDir . "/css/" . $className)) {
+                $path = $defaultDir . "/css/" . $className;
+                $contenuDossier = scandir($path);
+
+                $contenuDossier = array_filter($contenuDossier, function ($fichier) {
+                    return $fichier !== '.' && $fichier !== '..' && $fichier[0] !== '-' && substr($fichier, -4) === ".css";
+                });
+
+                foreach ( $contenuDossier as $fichieName ){
+                    $css .= " <link rel='stylesheet' href='" . ("webroot/css/" . $className . "/" . $fichieName) . "'>\n";
+
+                }
+
+            } 
+
+            if ( is_dir($defaultDir . "/js/" . $className)) {
+                $path = $defaultDir . "/js/" . $className;
+                $contenuDossier = scandir($path);
+                // Enlever les startwith(-), ., ..
+                $contenuDossier = array_filter($contenuDossier, function ($fichier) {
+                    return $fichier !== '.' && $fichier !== '..' && $fichier[0] !== '-' && substr($fichier, -3) === ".js";
+                });
+
+
+                foreach ( $contenuDossier as $fichieName ){
+                    $js .= "<script src='" . ("webroot/js/" . $className . "/" . $fichieName) ."'></script>\n";
+                }
+
+
+            } 
+        }
+        
         return ["js" => $js, "css" => $css];
     }
+
+    
 
     private static function getPath(string $dependency) {
         return "./node_modules". $dependency;

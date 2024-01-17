@@ -1,9 +1,7 @@
 <?php
 namespace Others;
 
-use Controller\Controller;
-use Entity\Entity;
-use Model\Model;
+use View\E404;
 use Dotenv\Dotenv;
 
 // use Model\Test;
@@ -39,24 +37,25 @@ class Configuration
                     $action = $_GET['action'];
 
                     if (method_exists($controller, $action) && is_callable([$controller, $action]) ) {
-                        $controller->$action();
+                        $controller->actionDefault();
                     }
                 }else {
-                    $controller->index();
+                    $controller->actionDefault();
                 }
                
             }
         }
 
         // Charger la vue correspondante
-        $viewGet = isset($_GET['view']) ? $_GET['view'] : 'E404';
+        $viewGet = $_GET['view'] ?? 'E404';
         $className = "View\\" . $viewGet;
 
         if (class_exists($className)) {
             $view = new $className();
             $view->render();
         } else {
-            echo "Class not found";
+            $view = new E404();
+            $view->render();
         }
 
     }

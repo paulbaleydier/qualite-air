@@ -8,7 +8,7 @@ use Others\Reponse;
 class Test extends Controller {
    
 
-    public function index() {
+    public function actionDefault() {
         Reponse::create(Reponse::OK, ["tes" => "dsds" ])->sendJson();
 
     }

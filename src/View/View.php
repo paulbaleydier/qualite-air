@@ -11,7 +11,7 @@ class View
 
     public function __construct()
     {
-        self::$dependency = Dependency::loadDependency(array());
+        self::$dependency = Dependency::loadDependency(array(), get_called_class());
 
     }
 
@@ -75,7 +75,7 @@ class View
                     <img src="https://github.com/mdo.png" alt="" width="32" height="32" class="rounded-circle me-2">
                     <strong>mdo</strong>
                 </a>
-                <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1" >
+                <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
                     <li><a class="dropdown-item" href="#">New project...</a></li>
                     <li><a class="dropdown-item" href="#">Settings</a></li>
                     <li><a class="dropdown-item" href="#">Profile</a></li>
@@ -148,7 +148,7 @@ class View
     {
         ?>
         <!DOCTYPE html>
-        <html lang="en">
+        <html lang="en" class="h-100">
 
         <head>
             <meta charset="UTF-8">
@@ -160,52 +160,26 @@ class View
             <!-- Ajoutez ici vos liens vers les fichiers CSS, scripts, etc. -->
             <?php echo static::$dependency["css"]; ?>
 
-            <!-- faire le system pour add les fichier du webroot via la view et les fichier par default
-                problème sur le #app
-            -->
-            <style>
-                html,
-                body {
-                    height: 100%;
-                    margin: 0;
+    
+            <!-- <style>
+                main {
+                    max-height: 80%;
+                    overflow: auto;
                 }
-
-                #app {
-                    min-height: 100%;
-                    position: relative;
-                    margin-bottom: -50px;
-                }
-
-                body {
-                    margin-bottom: 50px;
-                }
-
-                footer {
-                    height: 50px;
-                    position: absolute;
-                    bottom: 0;
-                    width: 100%;
-                }
-
-                header {
-                    position: fixed;
-                    top: 0;
-                    width: 100%;
-                    color: #fff;
-                    padding: 10px;
-                    z-index: 1000;
-                }
-            </style>
-
+            </style> -->
 
         </head>
-        <?php static::header(); ?>
 
-        <body>
+        <body class="d-flex flex-column h-100">
             <?php //static::sideBar(); ?>
-            <div id="app">
+
+            <?php static::header(); ?>
+
+            <main class="flex-shrink-0">
+                <div class="container">
                 <?php static::contentBody(); ?>
-            </div>
+                </div>
+            </main>
 
             <?php static::footer(); ?>
         </body>
