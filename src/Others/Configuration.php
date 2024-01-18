@@ -1,4 +1,5 @@
 <?php
+
 namespace Others;
 
 use View\E404;
@@ -33,26 +34,31 @@ class Configuration
             if (class_exists($className)) {
                 $controller = new $className();
 
-                if ( isset($_GET['action']) ) {
+                if (isset($_GET['action'])) {
                     $action = $_GET['action'];
 
-                    if (method_exists($controller, $action) && is_callable([$controller, $action]) ) {
-                        $controller->actionDefault();
+                    if (method_exists($controller, $action) && is_callable([$controller, $action])) {
+                        $controller->$action();
                     }
-                }else {
+                } else {
                     $controller->actionDefault();
                 }
-               
+
+                // Charger la vue correspondante
+                $viewGet = $_GET['view'] ?? 'E404';
+                $className = "View\\" . $controllerName . "\\" . $viewGet;
+
+                if (class_exists($className)) {
+                    $view = new $className();
+                    $view->render();
+                } else {
+                    $view = new E404();
+                    $view->render();
+                }
+            }else {
+                $view = new E404();
+                $view->render();
             }
-        }
-
-        // Charger la vue correspondante
-        $viewGet = $_GET['view'] ?? 'E404';
-        $className = "View\\" . $viewGet;
-
-        if (class_exists($className)) {
-            $view = new $className();
-            $view->render();
         } else {
             $view = new E404();
             $view->render();
@@ -65,5 +71,3 @@ class Configuration
         return $_ENV[$path] ?? "";
     }
 }
-
-?>

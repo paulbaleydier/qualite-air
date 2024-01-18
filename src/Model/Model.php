@@ -8,6 +8,7 @@ use PDOException;
 class Model {
     protected static $table;
     protected static $database;
+    protected static $id;
 
     private static $pdo;
 
@@ -50,14 +51,14 @@ class Model {
                     *
                 FROM 
                     " . static::$table . " as t
-                WHERE t.id = $id
+                WHERE t." . static::$id . " = $id
         ";
 
         $req = $pdo->query($sql);
 
         if ( $req->rowCount() > 0) {
             $data = $req->fetch(PDO::FETCH_ASSOC);
-            $className = "Entity\\" . ucfirst(static::$table);
+            $className = "Entity\\" . ucfirst(substr(strrchr(get_called_class(), '\\'), 1));
             $instance = new $className($data);
             return $instance;
         }else {
@@ -71,9 +72,9 @@ class Model {
         $sql = "SELECT * FROM ". static::$table;
 
         $req = $pdo->query($sql);
-
+        
         if ($req->rowCount() > 0 ){
-            return $req->fetchAll(PDO::FETCH_CLASS, "Entity\\" . ucfirst(static::$table));
+            return $req->fetchAll(PDO::FETCH_CLASS, "Entity\\" . ucfirst(substr(strrchr(get_called_class(), '\\'), 1)));
         }else {
             return null;
         }
@@ -110,7 +111,7 @@ class Model {
 
         $setClause = implode(', ', $setter);
 
-        $sql = "UPDATE " . static::$table . " SET $setClause WHERE id = :id";
+        $sql = "UPDATE " . static::$table . " SET $setClause WHERE " . static::$id . " = :id";
         $req = $pdo->prepare($sql);
         $req->bindParam(':id', $id);
 
@@ -125,7 +126,7 @@ class Model {
     {
         $pdo = self::getInstance();
 
-        $query = "DELETE FROM " . static::$table . " WHERE id = :id";
+        $query = "DELETE FROM " . static::$table . " WHERE " . static::$id . " = :id";
         $statement = $pdo->prepare($query);
         $statement->bindParam(':id', $id);
 

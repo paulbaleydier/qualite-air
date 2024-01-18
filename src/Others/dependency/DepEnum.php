@@ -3,6 +3,8 @@
 namespace Others\dependency;
 
 class DepEnum {
+
+
     
     const JQUERY_3_7_1 = [
         "css" => [],

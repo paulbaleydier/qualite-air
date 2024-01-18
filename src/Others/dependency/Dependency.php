@@ -20,77 +20,77 @@ class Dependency {
         // Load default dep
         foreach (self::DEFAULT_DEP as $dep) {
 
-            if ( !empty($dep["css"]) && !is_null($dep["css"]) && isset($dep["css"])){
-                foreach( $dep["css"] as $depCss) {
-                    $css .= " <link rel='stylesheet' href='" . self::getPath($depCss) . "'>\n";
-                }
+            foreach( $dep["css"] ?? [] as $depCss) {
+                $css .= " <link rel='stylesheet' href='" . self::getPath($depCss) . "'>\n";
             }
             
-            if ( !empty($dep["js"]) && !is_null($dep["js"]) && isset($dep["js"])){
-            foreach( $dep["js"] as $depJs) {
+            foreach( $dep["js"] ?? [] as $depJs) {
                 $js .= "<script src='" . self::getPath($depJs) ."'></script>\n";
             }
-        }
+        
 
         }
 
         // Load others dep
-        if (  isset($dependency) || !is_null($dependency) ) {
-            foreach ($dependency as $otherDep) {
-                if ( !empty($otherDep["css"]) && !is_null($otherDep["css"]) && isset($otherDep["css"])){
-                    foreach( $otherDep["css"] as $depCss) {
-                        $css .= " <link rel='stylesheet' href='" . self::getPath($depCss) . "'>\n";
-                    }
-                }
-                
-                if ( !empty($otherDep["js"]) && !is_null($otherDep["js"]) && isset($otherDep["js"])){
-                    foreach( $otherDep["js"] as $depJs) {
-                        $js .= "<script src='" . self::getPath($depJs) ."'></script>\n";
-                    }
-                }
-                
+        foreach ($dependency ?? [] as $otherDep) {
+            foreach( $otherDep["css"] ?? [] as $depCss) {
+                $css .= " <link rel='stylesheet' href='" . self::getPath($depCss) . "'>\n";
+            }
+            
+            foreach( $otherDep["js"] ?? [] as $depJs) {
+                $js .= "<script src='" . self::getPath($depJs) ."'></script>\n";
             }
             
         }
+            
+        
 
         // Load js and css of view 
+        $defaultDir = dirname(dirname(dirname(__DIR__))) . "/webroot";
 
-        if ( class_exists($class_call) ) {
-            $defaultDir = dirname(dirname(dirname(__DIR__))) . "/webroot";
-            $className = substr($class_call, strrpos($class_call, '\\') + 1 );
-            if ( is_dir($defaultDir . "/css/" . $className)) {
-                $path = $defaultDir . "/css/" . $className;
-                $contenuDossier = scandir($path);
+        // Default files
+        $defaultCssFiles = self::processFiles($defaultDir, 'default', 'css');
+        $defaultJsFiles = self::processFiles($defaultDir, 'default', 'js');
 
-                $contenuDossier = array_filter($contenuDossier, function ($fichier) {
-                    return $fichier !== '.' && $fichier !== '..' && $fichier[0] !== '-' && substr($fichier, -4) === ".css";
-                });
+        $css .= implode('', $defaultCssFiles);
+        $js .= implode('', $defaultJsFiles);
 
-                foreach ( $contenuDossier as $fichieName ){
-                    $css .= " <link rel='stylesheet' href='" . ("webroot/css/" . $className . "/" . $fichieName) . "'>\n";
-
-                }
-
-            } 
-
-            if ( is_dir($defaultDir . "/js/" . $className)) {
-                $path = $defaultDir . "/js/" . $className;
-                $contenuDossier = scandir($path);
-                // Enlever les startwith(-), ., ..
-                $contenuDossier = array_filter($contenuDossier, function ($fichier) {
-                    return $fichier !== '.' && $fichier !== '..' && $fichier[0] !== '-' && substr($fichier, -3) === ".js";
-                });
-
-
-                foreach ( $contenuDossier as $fichieName ){
-                    $js .= "<script src='" . ("webroot/js/" . $className . "/" . $fichieName) ."'></script>\n";
-                }
-
-
-            } 
+        // Files of class
+        if (class_exists($class_call)) {
+            $className = substr($class_call, strrpos($class_call, '\\') + 1);
+        
+            $cssFiles = self::processFiles($defaultDir, $className, 'css');
+        
+            $css .= implode('', $cssFiles);
+        
+            $jsFiles = self::processFiles($defaultDir, $className, 'js');
+        
+            $js .= implode('', $jsFiles);
         }
         
         return ["js" => $js, "css" => $css];
+    }
+
+    private static function processFiles($baseDir, $className, $fileType, $subFile = "") {
+        $path = $baseDir . "/$fileType/$className/$subFile";
+        
+        if (is_dir($path)) {
+            $contenuDossier = array_diff(scandir($path), ['.', '..']);
+            
+            $contenuDossier = array_filter($contenuDossier, function ($fichier) use ($fileType) {
+                return $fichier[0] !== '-' && substr($fichier, -strlen($fileType) - 1) === ".$fileType";
+            });
+    
+            return array_map(function ($fileName) use ($fileType, $className, $subFile) {
+                if ( $fileType == "css" ){
+                    return " <link rel='stylesheet' href='" . ("webroot/$fileType/$className/$subFile$fileName") . "'>\n";
+                }else {
+                    return "<script src='" . ("webroot/$fileType/$className/$subFile$fileName") ."'></script>\n";
+                }
+            }, $contenuDossier);
+        }
+    
+        return [];
     }
 
     

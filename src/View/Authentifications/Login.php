@@ -1,19 +1,19 @@
 <?php
-namespace View;
+namespace View\Authentifications;
 
-use Model\User;
 use Others\dependency\Dependency;
-use Others\dependency\DepEnum;
+use View\View;
 
-class Test extends View {
+class Login extends View {
 
     public function __construct() {
         self::$dependency = Dependency::loadDependency(array(), get_class());
     }
 
-    public function contentBody(){
+    public function contentBody() {
         ?>
-            <h1>View TEST</h1>
+            <h1>Authentifications</h1>
         <?php
     }
+
 }
