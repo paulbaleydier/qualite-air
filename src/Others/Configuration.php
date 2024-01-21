@@ -26,6 +26,8 @@ class Configuration
 
     public static function renderPage()
     {
+        
+        
         if (isset($_GET['controller'])) {
             $controllerName = $_GET['controller'];
 
@@ -51,6 +53,7 @@ class Configuration
                 if (class_exists($className)) {
                     $view = new $className();
                     $view->render();
+
                 } else {
                     $view = new E404();
                     $view->render();
@@ -62,6 +65,7 @@ class Configuration
         } else {
             $view = new E404();
             $view->render();
+
         }
 
     }

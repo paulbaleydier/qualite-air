@@ -1,0 +1,7 @@
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteBase /IRUP/qualiter-air/
+
+    # Rediriger toutes les requêtes vers /webroot/index.php
+    RewriteRule ^$ webroot/index.php [L]
+</IfModule>

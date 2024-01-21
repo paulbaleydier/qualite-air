@@ -1,0 +1,28 @@
+.container-wrapper .card {
+    width: 25vw;
+    height: auto;
+    background-color: #FFF;
+    border: 1px solid white;
+} 
+
+.container-wrapper .card-header {
+    color: black;
+}
+
+.container-wrapper .card-body {
+    padding: 10%;
+}
+
+.container-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: url("../../../assets/Login/bg-container.jpg");
+    background-position: center;
+    background-size: cover;
+}
+
+#btn-connexion {
+    width: 100%;
+}

@@ -57,7 +57,21 @@ class Dependency {
 
         // Files of class
         if (class_exists($class_call)) {
-            $className = substr($class_call, strrpos($class_call, '\\') + 1);
+            
+            $classSplit = explode("\\", $class_call);
+            $classController = $classSplit[1] ?? null;
+            $classView = $classSplit[2] ?? null;
+
+            if ( $classController !== null && $classView !== null) {
+                $className = $classController . "/" . $classView;
+            }else {
+                $className = substr($class_call, strrpos($class_call, '\\') + 1);
+            }
+
+            // var_dump($classController);
+            // var_dump($classView);die();
+
+            // 
         
             $cssFiles = self::processFiles($defaultDir, $className, 'css');
         
@@ -83,9 +97,9 @@ class Dependency {
     
             return array_map(function ($fileName) use ($fileType, $className, $subFile) {
                 if ( $fileType == "css" ){
-                    return " <link rel='stylesheet' href='" . ("webroot/$fileType/$className/$subFile$fileName") . "'>\n";
+                    return " <link rel='stylesheet' href='" . ("../webroot/$fileType/$className/$subFile$fileName") ."?v=" . time() . "'>\n";
                 }else {
-                    return "<script src='" . ("webroot/$fileType/$className/$subFile$fileName") ."'></script>\n";
+                    return "<script src='" . ("../webroot/$fileType/$className/$subFile$fileName") ."?v=" . time() . "'></script>\n";
                 }
             }, $contenuDossier);
         }
@@ -96,7 +110,7 @@ class Dependency {
     
 
     private static function getPath(string $dependency) {
-        return "./node_modules". $dependency;
+        return "../node_modules". $dependency;
     }
 
 }

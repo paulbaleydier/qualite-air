@@ -1,8 +1,0 @@
-<IfModule mod_rewrite.c>
-    RewriteEngine On
-    RewriteBase /IRUP/qualiter-air/
-
-    RewriteRule ^$ webroot/ [L]
-
-
-</IfModule>

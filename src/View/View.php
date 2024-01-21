@@ -8,6 +8,8 @@ class View
 {
 
     public static $dependency;
+    public static $header = true;
+    public static $footer = true;
 
     public function __construct()
     {
@@ -104,7 +106,7 @@ class View
             </a>
 
             <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
-                <li><a href="?controller=Utilisateurs&view=DataTable" class="nav-link px-2 link-secondary">Utilisateurs</a></li>
+                <li><a href="index.php?controller=Utilisateurs&view=DataTable" class="nav-link px-2 link-secondary">Utilisateurs</a></li>
                 <li><a href="?controller=Produits&view=DataTable" class="nav-link px-2 link-dark">Produits</a></li>
                 <li><a href="?controller=Commands&view=DataTable" class="nav-link px-2 link-dark">Commands</a></li>
             </ul>
@@ -172,16 +174,13 @@ class View
         <body class="d-flex flex-column h-100">
             <?php //static::sideBar(); ?>
 
-            <?php static::header(); ?>
+            <?php if (static::$header) static::header(); ?>
 
             <main class="flex-shrink-0">
-                <div class="container">
-
                 <?php static::contentBody(); ?>
-                </div>
             </main>
 
-            <?php static::footer(); ?>
+            <?php if (static::$footer) static::footer(); ?>
         </body>
         
         <?php echo static::$dependency["js"]; ?>
