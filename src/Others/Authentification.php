@@ -17,10 +17,23 @@ class Authentification {
         }
     }
 
+    public static function connectClient(array $data) {
+        foreach ( $data as $key => $value ) {
+            if ($key !== "password") $_SESSION[$key] = $value;
+        }
+    }
+
+    public static function logout() {
+        $_SESSION[] = array();
+        session_destroy();
+        header('Location: ./index.php?controller=Authentification&view=Login');
+        exit;
+    }
+
  
 
     public function isLoggedIn() {
-        return isset($_SESSION['user_id']);
+        return isset($_SESSION['id']);
     }
 
 }

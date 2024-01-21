@@ -16,6 +16,8 @@ class DataTable extends View {
             <h1>Utilisateurs</h1>
 
         <?php
+
+        var_dump($_SESSION);
     }
 
 }

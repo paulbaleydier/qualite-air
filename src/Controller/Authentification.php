@@ -3,6 +3,7 @@
 namespace Controller;
 
 use Model\Utilisateur\Utilisateur;
+use Others\Authentification as OthersAuthentification;
 use Others\Reponse;
 
 class Authentification extends Controller {
@@ -18,7 +19,7 @@ class Authentification extends Controller {
     public function login() {
         if ( !filter_has_var(INPUT_POST, "email") && !filter_has_var(INPUT_POST, "password") ) {
             Reponse::create(Reponse::ERROR, "Paramètre incorrect.")->sendJson();
-            // return;
+          
         }
 
         $email = filter_input(INPUT_POST, "email");
@@ -27,7 +28,17 @@ class Authentification extends Controller {
 
         $verifUser = Utilisateur::isExist($email, $passHash);
 
-        Reponse::create($verifUser ? Reponse::OK : Reponse::ERROR, $verifUser)->sendJson();
+            
+        if ($verifUser) {
+            OthersAuthentification::connectClient($verifUser);
+        }
+        
+        Reponse::create($verifUser ? Reponse::OK : Reponse::ERROR, null)->sendJson();
+
+    }
+
+    public static function logout(){
+        OthersAuthentification::logout();
     }
 
 }

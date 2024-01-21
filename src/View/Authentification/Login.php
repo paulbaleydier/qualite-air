@@ -25,18 +25,19 @@ class Login extends View
                     <h2>Authentification</h2>
                 </div>
                 <div class="card-body">
-                    <form id="from-connexion">
+
+                    <form id="form-connexion">
                         <div class="mb-3">
                             <label for="email" class="form-label">Adresse Mail :</label>
-                            <input type="email" class="form-control" id="email" placeholder="name@example.com">
+                            <input type="email" class="form-control" id="email" name="email" placeholder="name@example.com">
                         </div>
                         <div class="mb-3">
                             <label for="password" class="form-label">Mots de passe :</label>
-                            <input type="password" class="form-control" id="password" placeholder="">
+                            <input type="password" class="form-control" id="password" name="password" placeholder="">
                         </div>
-
                     </form>
-                    <button class="btn btn-primary" id="btn-connexion" type="">Connexion</button>
+                    <button class="btn btn-primary" id="btn-connexion">Connexion</button>
+
                     <div class="alert alert-danger mt-2" role="alert" id="connexion-fail" style="display: none;">
                         Veuillez vérifier vos informations d'identification et réessayer
                     </div>

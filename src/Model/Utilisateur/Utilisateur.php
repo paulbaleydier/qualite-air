@@ -1,7 +1,10 @@
 <?php 
 namespace Model\Utilisateur;
 
+use Entity\Entity;
+use Entity\Utilisateurs;
 use PDO;
+
 use Model\Model;
 
 class Utilisateur extends Model {
@@ -22,11 +25,13 @@ class Utilisateur extends Model {
         ";
 
         $req = $model->prepare($sql);
-
+        
         $req->bindParam(':email', $email, PDO::PARAM_STR);
         $req->bindParam(':password', $password, PDO::PARAM_STR);
-        
-        return $req->rowCount() >= 1;
+
+        $req->execute();
+ 
+        return $req->rowCount() >= 1 ? $req->fetch(PDO::FETCH_ASSOC) : false;
     }
 
 

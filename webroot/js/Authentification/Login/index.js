@@ -23,8 +23,10 @@ $(document).on('click', "#btn-connexion", function () {
         },
         dataType: 'JSON',
         success: function (reponse) {
+            console.log(reponse)
             if ( reponse.status == 0 ) {
                 $("#connexion-fail").css({"display" : "none"});
+                location.href = './index.php?controller=Utilisateurs&view=DataTable'
             }else {
                 $("#connexion-fail").css({"display" : "block"});
 
