@@ -3,7 +3,7 @@ namespace Entity;
 
 use Entity\Entity;
 use Model\Produits\Produits;
-use Model\Utilisateurs\Utilisateurs;
+use Model\Utilisateur\Utilisateur;
 
 class Commands extends Entity  {
 
@@ -23,7 +23,7 @@ class Commands extends Entity  {
             $this->_produit = Produits::getByID($this->produit_id);
         }
         if ( isset($this->utilisateur_id) ) {
-            $this->_user = Utilisateurs::getByID($this->utilisateur_id);
+            $this->_user = Utilisateur::getByID($this->utilisateur_id);
         }
     }
 

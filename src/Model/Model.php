@@ -59,6 +59,7 @@ class Model {
         if ( $req->rowCount() > 0) {
             $data = $req->fetch(PDO::FETCH_ASSOC);
             $className = "Entity\\" . ucfirst(substr(strrchr(get_called_class(), '\\'), 1));
+            echo $className;
             $instance = new $className($data);
             return $instance;
         }else {
@@ -113,6 +114,7 @@ class Model {
 
         $sql = "UPDATE " . static::$table . " SET $setClause WHERE " . static::$id . " = :id";
         $req = $pdo->prepare($sql);
+
         $req->bindParam(':id', $id);
 
         foreach ($data as $key => $value) {

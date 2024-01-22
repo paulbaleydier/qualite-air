@@ -45,8 +45,8 @@ class View
             </ul>
 
             <div class="col-md-3 text-end">
-                <button type="button" class="btn btn-outline-primary me-2">Login</button>
                 <a type="button" class="btn" href="./index.php?controller=Authentification&action=logout"><i class="fa-solid fa-door-open"></i></a>
+                <a type="button" class="btn" href="./index.php?controller=Settings&view=Settings"><i class="fa-solid fa-gear"></i></a>
             </div>
         </header>
         <?php

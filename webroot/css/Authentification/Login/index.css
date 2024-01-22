@@ -3,6 +3,8 @@
     height: auto;
     background-color: #FFF;
     border: 1px solid white;
+    min-width: 300px;
+    
 } 
 
 .container-wrapper .card-header {

@@ -15,7 +15,6 @@ ini_set('error_log', dirname(dirname(__DIR__)) . '/log/erreurs.log');
 
 $auth = new Authentification();
 
-
 try {
     $auth->init();
 

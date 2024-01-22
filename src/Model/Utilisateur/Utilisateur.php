@@ -18,7 +18,7 @@ class Utilisateur extends Model {
 
         $sql = "SELECT 
                     *
-                FROM " . static::$table . " as u
+                FROM " . static::$database . "." . static::$table . " as u
                 WHERE 
                     u.email = :email AND
                     u.password = :password

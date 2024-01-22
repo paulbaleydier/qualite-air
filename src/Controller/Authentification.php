@@ -12,9 +12,6 @@ class Authentification extends Controller {
         parent::actionDefault();        
     }
 
-    /*
-        TODO : Fonction pas 
-    */
 
     public function login() {
         if ( !filter_has_var(INPUT_POST, "email") && !filter_has_var(INPUT_POST, "password") ) {
@@ -29,9 +26,7 @@ class Authentification extends Controller {
         $verifUser = Utilisateur::isExist($email, $passHash);
 
             
-        if ($verifUser) {
-            OthersAuthentification::connectClient($verifUser);
-        }
+        if ($verifUser) OthersAuthentification::connectClient($verifUser);
         
         Reponse::create($verifUser ? Reponse::OK : Reponse::ERROR, null)->sendJson();
 
