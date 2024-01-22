@@ -46,7 +46,7 @@ class View
 
             <div class="col-md-3 text-end">
                 <a type="button" class="btn" href="./index.php?controller=Authentification&action=logout"><i class="fa-solid fa-door-open"></i></a>
-                <a type="button" class="btn" href="./index.php?controller=Settings&view=Settings"><i class="fa-solid fa-gear"></i></a>
+                <a type="button" class="btn" href="./index.php?controller=Settings&view=UserManagement"><i class="fa-solid fa-gear"></i></a>
             </div>
         </header>
         <?php
