@@ -10,5 +10,7 @@ Pour la configuration, il peut être nécessaire de revoir la fonction `renderPa
 
 ## Autres Lien
 - **Font Awesome 6** https://use.fontawesome.com/releases/v6.5.1/fontawesome-free-6.5.1-web.zip
+- **Chart.js** https://www.chartjs.org/docs/latest/configuration/
+- **DataTables.js** https://datatables.net/examples/index
 
 Projet BTS SN 2022 - 2024

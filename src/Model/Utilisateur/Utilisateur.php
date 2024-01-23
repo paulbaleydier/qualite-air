@@ -1,8 +1,8 @@
 <?php 
 namespace Model\Utilisateur;
 
-use Entity\Entity;
-use Entity\Utilisateurs;
+
+
 use PDO;
 
 use Model\Model;
@@ -18,7 +18,7 @@ class Utilisateur extends Model {
 
         $sql = "SELECT 
                     *
-                FROM " . static::$database . "." . static::$table . " as u
+                FROM " . static::$table . " as u
                 WHERE 
                     u.email = :email AND
                     u.password = :password
@@ -33,6 +33,8 @@ class Utilisateur extends Model {
  
         return $req->rowCount() >= 1 ? $req->fetch(PDO::FETCH_ASSOC) : false;
     }
+
+    
 
 
 }

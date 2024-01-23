@@ -1,11 +1,13 @@
 <?php
+
 namespace Model;
 
 use Others\Configuration as Config;
 use PDO;
 use PDOException;
 
-class Model {
+class Model
+{
     protected static $table;
     protected static $database;
     protected static $id;
@@ -24,9 +26,6 @@ class Model {
         try {
             self::$pdo = new PDO('mysql:host=' . $host . ';dbname=' . static::$database, $username, $password);
             self::$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-            
-
         } catch (PDOException $e) {
             die("Erreur de connexion à la base de données : " . $e->getMessage());
         }
@@ -34,17 +33,19 @@ class Model {
         return self::$pdo;
     }
 
-  
 
-    
-    protected static function getInstance() {
+
+
+    protected static function getInstance()
+    {
         return self::$pdo ?? self::connect();
     }
 
     // others méthodes
 
 
-    public static function getByID(int $id) {
+    public static function getByID(int $id)
+    {
         $pdo = self::getInstance();
 
         $sql = "SELECT
@@ -56,27 +57,35 @@ class Model {
 
         $req = $pdo->query($sql);
 
-        if ( $req->rowCount() > 0) {
+        if ($req->rowCount() > 0) {
             $data = $req->fetch(PDO::FETCH_ASSOC);
             $className = "Entity\\" . ucfirst(substr(strrchr(get_called_class(), '\\'), 1));
-            echo $className;
             $instance = new $className($data);
             return $instance;
-        }else {
+        } else {
             return null;
         }
     }
 
-    public static function getAll(){
+    public static function getAll($query = "*")
+    {
         $pdo = self::getInstance();
 
-        $sql = "SELECT * FROM ". static::$table;
+        $sql = "SELECT $query FROM " . static::$table;
 
         $req = $pdo->query($sql);
-        
-        if ($req->rowCount() > 0 ){
-            return $req->fetchAll(PDO::FETCH_CLASS, "Entity\\" . ucfirst(substr(strrchr(get_called_class(), '\\'), 1)));
-        }else {
+
+        if ($req->rowCount() > 0) {
+            $results = array();
+            $rows = $req->fetchAll(PDO::FETCH_ASSOC);
+            $className = "Entity\\" . ucfirst(substr(strrchr(get_called_class(), '\\'), 1));
+
+            foreach ($rows as $row) {
+                array_push($results, new $className($row));
+            }
+            return $results;
+
+        } else {
             return null;
         }
     }
@@ -134,10 +143,4 @@ class Model {
 
         return $statement->execute();
     }
-
-   
-
-
 }
-
-?>

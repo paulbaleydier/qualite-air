@@ -30,7 +30,7 @@ class View
         ?>
         <!-- Code HTML pour la barre de navigation -->
         <header
-            class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom"
+            class=" d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom"
             >
             <a href="/" class="d-flex align-items-center col-md-3 mb-2 mb-md-0 text-dark text-decoration-none">
                 <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap">
@@ -39,14 +39,14 @@ class View
             </a>
 
             <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
-                <li><a href="index.php?controller=Utilisateurs&view=DataTable" class="nav-link px-2 link-secondary">Utilisateurs</a></li>
+                <li><a href="index.php?controller=Dashboard&view=Dashboard" class="nav-link px-2 link-secondary">Tableau de bord</a></li>
                 <li><a href="?controller=Produits&view=DataTable" class="nav-link px-2 link-dark">Produits</a></li>
                 <li><a href="?controller=Commands&view=DataTable" class="nav-link px-2 link-dark">Commands</a></li>
             </ul>
 
             <div class="col-md-3 text-end">
                 <a type="button" class="btn" href="./index.php?controller=Authentification&action=logout"><i class="fa-solid fa-door-open"></i></a>
-                <a type="button" class="btn" href="./index.php?controller=Settings&view=UserManagement"><i class="fa-solid fa-gear"></i></a>
+                <a type="button" class="btn" href="./index.php?controller=Settings&view=SettingsPage"><i class="fa-solid fa-gear"></i></a>
             </div>
         </header>
         <?php
@@ -60,7 +60,7 @@ class View
     {
         ?>
         <!-- Code HTML pour le pied de page -->
-        <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top"
+        <footer class="position-fixed w-100 bottom-0 d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top"
             style="max-height: 10%;">
             <div class="col-md-4 d-flex align-items-center">
                 <a href="/" class="mb-3 me-2 mb-md-0 text-muted text-decoration-none lh-1">

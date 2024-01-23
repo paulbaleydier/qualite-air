@@ -77,3 +77,17 @@ INSERT INTO `utilisateurs` (`id`, `nom`, `prenom`, `email`, `password`, `created
 /*!40014 SET FOREIGN_KEY_CHECKS=IFNULL(@OLD_FOREIGN_KEY_CHECKS, 1) */;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40111 SET SQL_NOTES=IFNULL(@OLD_SQL_NOTES, 1) */;
+
+
+
+
+
+CREATE TABLE `analysisco` (
+	`id` INT(10) NOT NULL AUTO_INCREMENT,
+	`value` DOUBLE NOT NULL DEFAULT '0',
+	`timestamp` DATE NOT NULL DEFAULT (now()),
+	PRIMARY KEY (`id`) USING BTREE
+)
+COLLATE='utf8mb4_0900_ai_ci'
+ENGINE=MyISAM
+;

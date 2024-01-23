@@ -18,7 +18,8 @@ class Commands extends Entity  {
 
  
 
-    public function __construct() {
+    public function __construct(array $data = array()) {
+        parent::__construct($data);
         if ( isset($this->produit_id) ) {
             $this->_produit = Produits::getByID($this->produit_id);
         }
