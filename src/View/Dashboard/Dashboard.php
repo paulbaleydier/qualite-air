@@ -22,12 +22,12 @@ class Dashboard extends View
         <div class="content">
 
             <div class="shadow card">
-                <div class="card-body" style="display: inline-flex;justify-content: space-around;">
-                    <div style="width: 40vw;">
-                        <canvas id="chart-test"></canvas>
-                    </div>
-                    <div style="width: 40vw;">
-                        <canvas id="lineChart"></canvas>
+                <div class="card-body" style="display: flex;justify-content: space-around;flex:1 1 auto;">
+                    <div class="chart-container" style="position: relative; height:40vh; width:80vw">
+                            <canvas id="chart-test"></canvas>
+                        </div>
+                    <div class="chart-container" style="position: relative; height:40vh; width:80vw">
+                            <canvas id="lineChart"></canvas>
                     </div>
                 </div>
             </div>

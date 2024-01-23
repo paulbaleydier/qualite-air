@@ -26,7 +26,7 @@ $(document).on('click', "#btn-connexion", function () {
             console.log(reponse)
             if ( reponse.status == 0 ) {
                 $("#connexion-fail").css({"display" : "none"});
-                location.href = './index.php?controller=Utilisateurs&view=DataTable'
+                location.href = './index.php?controller=Dashboard&view=Dashboard'
             }else {
                 $("#connexion-fail").css({"display" : "block"});
 

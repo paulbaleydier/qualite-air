@@ -7,7 +7,6 @@ $.ajax({
     dataType: 'JSON',
     success: function (reponse) {
         if (reponse.status == 0) {
-            console.log(reponse.data)
             updateStats(reponse.data)
         }
     }
@@ -37,7 +36,8 @@ function updateStats(data) {
                     }
                 ],
             
-            }
+            },
+            
         }
     ); 
     new Chart(
