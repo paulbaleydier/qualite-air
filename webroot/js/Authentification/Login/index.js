@@ -1,5 +1,11 @@
 $(function () {
 
+$(document).on('keypress', function (e) {
+    if ( e.which === 13 ){
+        $("#btn-connexion").trigger('click');
+    }
+});
+
 $(document).on('click', "#btn-connexion", function () {
     const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
     var email = $("#email").val();

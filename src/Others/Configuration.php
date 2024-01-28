@@ -52,6 +52,7 @@ class Configuration
 
                 if (class_exists($className)) {
                     $view = new $className();
+                    $view::$controller = $controller;
                     $view->render();
 
                 } else {

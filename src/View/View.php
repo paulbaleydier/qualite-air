@@ -8,6 +8,7 @@ class View
 {
 
     public static $dependency;
+    public static $controller;
     public static $header = true;
     public static $footer = true;
 
@@ -15,41 +16,44 @@ class View
     {
         self::$dependency = Dependency::loadDependency(array(), get_called_class());
         // self::$controller = str_replace("View", "Controller", get_called_class());
-        
+
     }
 
     public function sideBar()
     {
-        ?>
-       
-        <?php
+?>
+
+    <?php
     }
 
     public function header()
     {
-        ?>
+    ?>
         <!-- Code HTML pour la barre de navigation -->
-        <header
-            class=" d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom"
-            >
-            <a href="/" class="d-flex align-items-center col-md-3 mb-2 mb-md-0 text-dark text-decoration-none">
+
+
+        <header class=" d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
+            <!-- <a href="/" class="d-flex align-items-center col-md-3 mb-2 mb-md-0 text-dark text-decoration-none">
                 <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap">
                     <use xlink:href="#bootstrap"></use>
                 </svg>
-            </a>
+            </a> -->
 
-            <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
+            <ul class="nav col-10 justify-content-center w-100">
                 <li><a href="index.php?controller=Dashboard&view=Dashboard" class="nav-link px-2 link-secondary">Tableau de bord</a></li>
                 <li><a href="?controller=Produits&view=DataTable" class="nav-link px-2 link-dark">Produits</a></li>
                 <li><a href="?controller=Commands&view=DataTable" class="nav-link px-2 link-dark">Commands</a></li>
+
+                <li style="right: 0.2rem;position: absolute;">
+                    <a type="button" class="btn" href="./index.php?controller=Authentification&action=logout"><i class="fa-solid fa-door-open"></i></a>
+                    <a type="button" class="btn" href="./index.php?controller=Settings&view=SettingsPage"><i class="fa-solid fa-gear"></i></a>
+                </li>
+
             </ul>
 
-            <div class="col-md-3 text-end">
-                <a type="button" class="btn" href="./index.php?controller=Authentification&action=logout"><i class="fa-solid fa-door-open"></i></a>
-                <a type="button" class="btn" href="./index.php?controller=Settings&view=SettingsPage"><i class="fa-solid fa-gear"></i></a>
-            </div>
+
         </header>
-        <?php
+    <?php
     }
 
     public function contentBody()
@@ -58,10 +62,9 @@ class View
 
     public function footer()
     {
-        ?>
+    ?>
         <!-- Code HTML pour le pied de page -->
-        <footer class="position-fixed w-100 bottom-0 d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top"
-            style="max-height: 10%;">
+        <footer class="position-fixed w-100 bottom-0 d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top" style="max-height: 10%;">
             <div class="col-md-4 d-flex align-items-center">
                 <a href="/" class="mb-3 me-2 mb-md-0 text-muted text-decoration-none lh-1">
                     <svg class="bi" width="30" height="24">
@@ -75,12 +78,12 @@ class View
                 <span class="text-muted ">Projet BTS SN 2022 - 2024</span>
             </ul>
         </footer>
-        <?php
+    <?php
     }
 
     public function render()
     {
-        ?>
+    ?>
         <!DOCTYPE html>
         <html lang="en" class="h-100">
 
@@ -94,7 +97,7 @@ class View
             <!-- Ajoutez ici vos liens vers les fichiers CSS, scripts, etc. -->
             <?php echo static::$dependency["css"]; ?>
 
-    
+
             <!-- <style>
                 main {
                     max-height: 80%;
@@ -105,7 +108,8 @@ class View
         </head>
 
         <body class="d-flex flex-column h-100">
-            <?php //static::sideBar(); ?>
+            <?php //static::sideBar(); 
+            ?>
 
             <?php if (static::$header) static::header(); ?>
 
@@ -116,8 +120,14 @@ class View
             <?php if (static::$footer) static::footer(); ?>
         </body>
         
-        <?php echo static::$dependency["js"]; ?>
+        <?php 
+            echo static::$dependency["js"];
+            echo static::script();
+        ?>
+        
         </html>
-        <?php
+<?php
     }
+
+    protected function script(){}
 }

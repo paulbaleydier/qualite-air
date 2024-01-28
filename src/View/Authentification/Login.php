@@ -29,11 +29,11 @@ class Login extends View
                     <form id="form-connexion">
                         <div class="mb-3">
                             <label for="email" class="form-label">Adresse Mail :</label>
-                            <input type="email" class="form-control" id="email" name="email" placeholder="name@example.com">
+                            <input type="email" class="form-control" id="email" name="email" placeholder="name@example.com" required>
                         </div>
                         <div class="mb-3">
                             <label for="password" class="form-label">Mots de passe :</label>
-                            <input type="password" class="form-control" id="password" name="password" placeholder="">
+                            <input type="password" class="form-control" id="password" name="password" placeholder="" required>
                         </div>
                     </form>
                     <button class="btn btn-primary" id="btn-connexion">Connexion</button>
