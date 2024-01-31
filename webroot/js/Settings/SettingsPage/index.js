@@ -1,12 +1,12 @@
 var DT_UserList;
 
+
 $(function () {
 
-// DT_UserList
-// // DT_PermManage
+
     DT_UserList = $("#DT_UserList").DataTable({
         ajax: {
-            url: 'index.php?controller=Utilisateurs&action=dataTable',
+            url: 'index.php?controller=Utilisateur&action=dataTable',
             dataSrc: 'data'
         },
         "columns": [
@@ -37,7 +37,7 @@ $(function () {
                 width: '10%',
                 render: function (data) {
                     return `<div class="d-flex justify-content-evenly">` +
-                            `<a href='index.php?controller=Utilisateurs&view=CRUD&id=${data.id}' class="btn btn-warning"> <i class="fa-regular fa-pen-to-square"></i> </a>`    +
+                            `<a href='index.php?controller=Utilisateur&view=CRUD&id=${data.id}' class="btn btn-warning"> <i class="fa-regular fa-pen-to-square"></i> </a>`    +
                             `<div class="btn btn-danger" onClick='deleteUser(${data.id})'> <i class="fa-solid fa-trash-can"></i> </div>`    +
                         `</div>`;
                 }
@@ -60,6 +60,8 @@ $(function () {
         }
     });
 
+ 
+    
 
 
 });
@@ -69,7 +71,7 @@ function deleteUser(id) {
     confirmationDialog(() => {
         $.ajax({
             type: 'POST',
-            url: 'index.php?controller=Utilisateurs&action=deleteUser',
+            url: 'index.php?controller=Utilisateur&action=deleteUser',
             data: {"id": id},
             dataType: 'JSON',
             async: false,
