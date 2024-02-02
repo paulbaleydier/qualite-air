@@ -41,8 +41,8 @@ class View
 
             <ul class="nav col-10 justify-content-center w-100">
                 <li><a href="index.php?controller=Dashboard&view=Dashboard" class="nav-link px-2 link-secondary">Tableau de bord</a></li>
-                <li><a href="?controller=Produits&view=DataTable" class="nav-link px-2 link-dark">Produits</a></li>
-                <li><a href="?controller=Commands&view=DataTable" class="nav-link px-2 link-dark">Commands</a></li>
+                <!-- <li><a href="?controller=Produits&view=DataTable" class="nav-link px-2 link-dark">Produits</a></li> -->
+                <!-- <li><a href="?controller=Commands&view=DataTable" class="nav-link px-2 link-dark">Commands</a></li> -->
 
                 <li style="right: 0.2rem;position: absolute;">
                     <a type="button" class="btn" href="./index.php?controller=Authentification&action=logout"><i class="fa-solid fa-door-open"></i></a>

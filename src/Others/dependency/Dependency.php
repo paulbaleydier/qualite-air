@@ -110,7 +110,7 @@ class Dependency {
     
 
     private static function getPath(string $dependency) {
-        return "../node_modules". $dependency;
+        return "../". $dependency;
     }
 
 }

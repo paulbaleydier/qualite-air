@@ -61,7 +61,54 @@ class SettingsPage extends View
                     <?php if (Utilisateur::hasPermission(Utilisateur::USER)) { ?>
                         <div class="mt-2 tab-pane fade show active" id="userSettings" role="tabpanel" aria-labelledby="userSettings-tab">
 
-                            <!-- <table class="table" id="DT_UserList" style="margin-top: 1rem;"></table> -->
+                            <div class="card mt-3">
+                                <div class="card-header text-center">
+                                    <div>Modification de l'utilisateur</div>
+                                </div>
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-6 mb-3">
+                                            <div class="form-group">
+                                                <label for="nom" class="form-label">Nom :</label>
+                                                <input type="text" class="form-control" id="nom" name="nom" data-update="nom">
+                                            </div>
+                                        </div>
+
+                                        <div class="col-6 mb-3">
+                                            <div class="form-group">
+                                                <label for="prenom" class="form-label">Prenom</label>
+                                                <input type="text" class="form-control" id="prenom" name="prenom" data-update="prenom">
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <div class="form-group">
+                                                <label for="email" class="form-label">Adresse Mail :</label>
+                                                <input type="email" class="form-control" id="email" name="email" data-update="email">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+
+                                        <div class="col-6">
+                                            <div class="form-group">
+                                                <label for="permission" class="form-label">Permissions :</label>
+                                                <input type="number" class="form-control" id="permission" name="permission" disabled readonly>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-6 d-flex align-items-end justify-content-around">
+                                            <button class="ml-2 btn btn-primary" id="reset-password">Réinitialiser le mots de passe</button>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
 
 
                         </div>

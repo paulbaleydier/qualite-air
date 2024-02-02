@@ -3,13 +3,22 @@
         'name' => 'paul/qualiter-air',
         'pretty_version' => 'dev-main',
         'version' => 'dev-main',
-        'reference' => '80242582de57b2bdea468c92e97e942deeecb0c3',
+        'reference' => '62b00676a6ace0507eadaa506c31e38410b11f25',
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
         'dev' => true,
     ),
     'versions' => array(
+        'almasaeed2010/adminlte' => array(
+            'pretty_version' => 'v3.2.0',
+            'version' => '3.2.0.0',
+            'reference' => 'bd4d9c72931f1dd28601b6bfb387554a381ad540',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../almasaeed2010/adminlte',
+            'aliases' => array(),
+            'dev_requirement' => false,
+        ),
         'graham-campbell/result-type' => array(
             'pretty_version' => 'v1.1.2',
             'version' => '1.1.2.0',
@@ -22,7 +31,7 @@
         'paul/qualiter-air' => array(
             'pretty_version' => 'dev-main',
             'version' => 'dev-main',
-            'reference' => '80242582de57b2bdea468c92e97e942deeecb0c3',
+            'reference' => '62b00676a6ace0507eadaa506c31e38410b11f25',
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
