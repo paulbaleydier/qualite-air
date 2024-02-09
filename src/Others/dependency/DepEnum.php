@@ -2,38 +2,53 @@
 
 namespace Others\dependency;
 
-class DepEnum {
+class DepEnum
+{
 
 
-    /**
-     * 
-     * NODE_MODULES
-     * 
-     */
-    
-    const JQUERY_3_7_1 = [
-        "css" => [],
-        "js" => ["node_modules/jquery/dist/jquery.min.js"]
+
+    const JQUERY = [
+        "css" => [
+            "vendor/almasaeed2010/adminlte/plugins/jquery-ui/jquery-ui.min.css"
+        ],
+        "js" => [
+            "vendor/almasaeed2010/adminlte/plugins/jquery/jquery.min.js",
+            "vendor/almasaeed2010/adminlte/plugins/jquery-ui/jquery-ui.min.js",
+            "vendor/almasaeed2010/adminlte/plugins/jquery-knob/jquery.knob.min.js"
+        ]
     ];
 
-    
-
-    const BOOTSTRAP_5_1_3 = [
-        "css" => ["node_modules/bootstrap/dist/css/bootstrap.min.css"],
-        "js" => ["node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"]
+    const ADMINLTE = [
+        "css" => [
+            "vendor/almasaeed2010/adminlte/plugins/overlayScrollbars/css/OverlayScrollbars.min.css",
+            "vendor/almasaeed2010/adminlte/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css",
+            "vendor/almasaeed2010/adminlte/dist/css/adminlte.min.css",
+        ],
+        "js" => [
+            "vendor/almasaeed2010/adminlte/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js",
+            "vendor/almasaeed2010/adminlte/plugins/bootstrap/js/bootstrap.bundle.min.js",
+            "vendor/almasaeed2010/adminlte/dist/js/adminlte.min.js"
+        ]
     ];
+
+
+
 
 
     const SWEATALERT2 = [
-        "css" => ["node_modules/sweetalert2/dist/sweetalert2.min.css"],
-        "js" => ["node_modules/sweetalert2/dist/sweetalert2.all.min.js"]
+        "css" => [
+            "vendor/almasaeed2010/adminlte/plugins/sweetalert2/sweetalert2.min.css",
+        ],
+        "js" => [
+            "vendor/almasaeed2010/adminlte/plugins/sweetalert2/sweetalert2.min.js"
+        ]
     ];
 
-    
+
 
     const CHARTJS = [
-        "css" => [],
-        "js" => ["node_modules/chart.js/dist/chart.umd.js"]
+        "css" => ["vendor/almasaeed2010/adminlte/plugins/chart.js/Chart.min.css"],
+        "js" => ["vendor/almasaeed2010/adminlte/plugins/chart.js/Chart.min.js"]
     ];
 
     /**
@@ -47,11 +62,17 @@ class DepEnum {
         "js" => ["plugins/DataTables-1.13.8/datatables.min.js"]
     ];
 
-    const FONTAWESOME_6_5_1 = [
+
+
+    const FONTAWESOME = [
         "css" => ["plugins/fontawesome-free-6.5.1/css/all.min.css"],
         "js" => ["plugins/fontawesome-free-6.5.1/js/all.min.js"]
     ];
 
-  
 
+
+    const ICHECK_BOOTSTRAP = [
+        "css" => ["vendor/almasaeed2010/adminlte/plugins/icheck-bootstrap/icheck-bootstrap.min.css"],
+        "js" => []
+    ];
 }

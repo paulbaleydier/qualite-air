@@ -2,7 +2,7 @@
 
 namespace Controller;
 
-use Model\Utilisateur\Utilisateur;
+use Model\Utilisateur;
 use Others\Authentification as OthersAuthentification;
 use Others\Reponse;
 

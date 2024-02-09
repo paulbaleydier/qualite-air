@@ -86,7 +86,7 @@ class Model
             return $results;
 
         } else {
-            return null;
+            return array();
         }
     }
 

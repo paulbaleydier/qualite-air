@@ -3,7 +3,7 @@
 namespace Controller;
 
 use Entity\Utilisateur as EntityUtilisateur;
-use Model\Utilisateur\Utilisateur as ModelUser;
+use Model\Utilisateur as ModelUser;
 use Others\Reponse;
 
 class Utilisateur extends Controller {

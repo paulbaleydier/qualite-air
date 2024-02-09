@@ -19,22 +19,23 @@ class Dashboard extends View
     {
 ?>
 
-        <div class="content">
-
-            <div class="shadow card">
-                <div class="card-body" style="display: flex;justify-content: space-around;flex:1 1 auto;">
-                    <div class="chart-container" style="position: relative; height:40vh; width:80vw">
+        <div class="content-wrapper">
+            <div class="content">
+                <div class="row">
+                    <div class="col-6 d-flex justify-content-center">
+                        <div class="chart-container" style="position: relative; height:30vh; width:30vw">
                             <canvas id="chart-test"></canvas>
                         </div>
-                    <div class="chart-container" style="position: relative; height:40vh; width:80vw">
+                    </div>
+                    <div class="col-6 d-flex justify-content-center">
+                        <div class="chart-container" style="position: relative; height:30vh; width:30vw">
                             <canvas id="lineChart"></canvas>
+                        </div>
                     </div>
                 </div>
             </div>
-
-
+    
         </div>
-
 <?php
     }
 }

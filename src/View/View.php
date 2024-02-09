@@ -2,7 +2,9 @@
 
 namespace View;
 
+use Entity\Utilisateur;
 use Others\dependency\Dependency;
+use Others\dependency\DepEnum;
 
 class View
 {
@@ -11,10 +13,12 @@ class View
     public static $controller;
     public static $header = true;
     public static $footer = true;
+    public static $sideBar = true;
+
 
     public function __construct()
     {
-        self::$dependency = Dependency::loadDependency(array(), get_called_class());
+        self::$dependency = Dependency::loadDependency(array(DepEnum::DATATABLESJS), get_called_class());
         // self::$controller = str_replace("View", "Controller", get_called_class());
 
     }
@@ -22,6 +26,69 @@ class View
     public function sideBar()
     {
 ?>
+        <aside class="main-sidebar sidebar-dark-primary elevation-4">
+            <!-- Brand Logo -->
+            <a href="index.php?controller=Dashboard&view=Dashboard" class="brand-link text-center">
+                <span class="brand-text font-weight-light">QDA</span>
+            </a>
+
+            <!-- Sidebar -->
+            <div class="sidebar">
+                <!-- Sidebar user panel -->
+                <div class="user-panel mt-3 pb-3 mb-3 d-flex justify-content-center">
+                    <div>
+                        <a href="#" class="d-block"><?php echo ucfirst($_SESSION["nom"]) . " " . ucfirst($_SESSION["prenom"]) ?></a>
+                    </div>
+                </div>
+
+
+                <!-- Sidebar Menu -->
+                <nav class="mt-2">
+                    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+
+
+
+                        <li class="nav-item">
+                            <a href="index.php?controller=Dashboard&view=Dashboard" class="nav-link">
+                                <i class="nav-icon fa-solid fa-chart-line"></i>
+                                <p> Tableau de bord </p>
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fa-solid fa-gear"></i>
+                                <p>
+                                    Paramètres
+                                    <i class="right fas fa-angle-left"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <?php if (Utilisateur::hasPermission(Utilisateur::ADMIN)) { ?>
+
+                                    <li class="nav-item">
+                                        <a href="index.php?controller=Settings&view=UsersManagement" class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Gestion Utilisateur(s)</p>
+                                        </a>
+                                    </li>
+                                <?php } ?>
+
+                                <li class="nav-item">
+                                    <a href="" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Gestion utilisateur</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+
+                    </ul>
+                </nav>
+                <!-- /.sidebar-menu -->
+            </div>
+            <!-- /.sidebar -->
+        </aside>
 
     <?php
     }
@@ -30,29 +97,30 @@ class View
     {
     ?>
         <!-- Code HTML pour la barre de navigation -->
+        <nav class="main-header navbar navbar-expand navbar-white navbar-light">
 
-
-        <header class=" d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
-            <!-- <a href="/" class="d-flex align-items-center col-md-3 mb-2 mb-md-0 text-dark text-decoration-none">
-                <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap">
-                    <use xlink:href="#bootstrap"></use>
-                </svg>
-            </a> -->
-
-            <ul class="nav col-10 justify-content-center w-100">
-                <li><a href="index.php?controller=Dashboard&view=Dashboard" class="nav-link px-2 link-secondary">Tableau de bord</a></li>
-                <!-- <li><a href="?controller=Produits&view=DataTable" class="nav-link px-2 link-dark">Produits</a></li> -->
-                <!-- <li><a href="?controller=Commands&view=DataTable" class="nav-link px-2 link-dark">Commands</a></li> -->
-
-                <li style="right: 0.2rem;position: absolute;">
-                    <a type="button" class="btn" href="./index.php?controller=Authentification&action=logout"><i class="fa-solid fa-door-open"></i></a>
-                    <a type="button" class="btn" href="./index.php?controller=Settings&view=SettingsPage"><i class="fa-solid fa-gear"></i></a>
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
                 </li>
 
             </ul>
 
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" data-widget="fullscreen" href="#" role="button">
+                        <i class="fas fa-expand-arrows-alt"></i>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="index.php?controller=Authentification&action=logout" role="button">
+                        <i class="fas fa-door-open"></i>
+                    </a>
+                </li>
+            </ul>
+        </nav>
 
-        </header>
+
     <?php
     }
 
@@ -63,20 +131,11 @@ class View
     public function footer()
     {
     ?>
-        <!-- Code HTML pour le pied de page -->
-        <footer class="position-fixed w-100 bottom-0 d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top" style="max-height: 10%;">
-            <div class="col-md-4 d-flex align-items-center">
-                <a href="/" class="mb-3 me-2 mb-md-0 text-muted text-decoration-none lh-1">
-                    <svg class="bi" width="30" height="24">
-                        <use xlink:href="#bootstrap"></use>
-                    </svg>
-                </a>
-                <span class="text-muted">© 2021 Company, Inc</span>
+        <footer class="main-footer">
+            <strong>Copyright © 2024 PVM-TECH.</strong>
+            <div class="float-right d-none d-sm-inline-block">
+                <b>Version</b> 0.0.1
             </div>
-
-            <ul class="nav col-md-4 justify-content-end list-unstyled d-flex px-2">
-                <span class="text-muted ">Projet BTS SN 2022 - 2024</span>
-            </ul>
         </footer>
     <?php
     }
@@ -85,7 +144,7 @@ class View
     {
     ?>
         <!DOCTYPE html>
-        <html lang="en" class="h-100">
+        <html lang="fr" style="height: auto;">
 
         <head>
             <meta charset="UTF-8">
@@ -93,41 +152,40 @@ class View
             <meta name="description" content="Description de votre page">
             <meta name="keywords" content="Mot-clé 1, Mot-clé 2, ...">
 
-            <title>Mon Application</title>
+            <title>Qualité de l'air</title>
             <!-- Ajoutez ici vos liens vers les fichiers CSS, scripts, etc. -->
+            <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&amp;display=fallback">
+
             <?php echo static::$dependency["css"]; ?>
-
-
-            <!-- <style>
-                main {
-                    max-height: 80%;
-                    overflow: auto;
-                }
-            </style> -->
 
         </head>
 
-        <body class="d-flex flex-column h-100">
-            <?php //static::sideBar(); 
-            ?>
+        <body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed">
+            <!-- <body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed sidebar-collapse"> -->
+            <div class="wrapper">
+                <?php if (static::$header) static::header(); ?>
 
-            <?php if (static::$header) static::header(); ?>
+                <?php if (static::$sideBar) static::sideBar(); ?>
 
-            <main class="flex-shrink-0">
+
+                <!-- <div class="content-wrapper"></div> -->
                 <?php static::contentBody(); ?>
-            </main>
 
-            <?php if (static::$footer) static::footer(); ?>
+                <div id="sidebar-overlay"></div>
+                <?php if (static::$footer) static::footer(); ?>
+            </div>
         </body>
-        
-        <?php 
-            echo static::$dependency["js"];
-            echo static::script();
+
+        <?php
+        echo static::$dependency["js"];
+        echo static::script();
         ?>
-        
+
         </html>
 <?php
     }
 
-    protected function script(){}
+    protected function script()
+    {
+    }
 }

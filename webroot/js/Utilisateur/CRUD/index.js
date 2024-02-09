@@ -81,7 +81,7 @@ $(function () {
             cache: false,
             success: function (reponse) {
                 if ( reponse.status === 0 ) {
-                    Swal.fire('Action validée !', "", "success").then(() => location.href = "index.php?controller=Settings&view=SettingsPage"); 
+                    Swal.fire('Action validée !', "", "success").then(() => history.back()); 
                 }else {
                     this.error();
                 }
@@ -111,7 +111,7 @@ $(function () {
             cache: false,
             success: function (reponse) {
                 if ( reponse.status === 0 ) {
-                    Swal.fire('Action validée !', "", "success").then(() => location.href = "index.php?controller=Settings&view=SettingsPage"); 
+                    Swal.fire('Action validée !', "", "success").then(() => history.back()); 
                 }else {
                     this.error();
                 }

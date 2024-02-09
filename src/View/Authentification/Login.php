@@ -14,6 +14,7 @@ class Login extends View
         self::$dependency = Dependency::loadDependency(array(DepEnum::SWEATALERT2), get_class());
         self::$header = false;
         self::$footer = false;
+        self::$sideBar = false;
     }
 
     public function contentBody()

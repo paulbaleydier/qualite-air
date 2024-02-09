@@ -8,9 +8,9 @@ class Dependency {
 
 
     const DEFAULT_DEP = [
-        DepEnum::BOOTSTRAP_5_1_3,
-        DepEnum::JQUERY_3_7_1,
-        DepEnum::FONTAWESOME_6_5_1
+        DepEnum::JQUERY,
+        DepEnum::FONTAWESOME,
+        DepEnum::ADMINLTE,
     ];
 
     public static function loadDependency(array|null $dependency = null , string $class_call) {

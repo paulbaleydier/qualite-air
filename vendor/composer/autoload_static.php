@@ -26,7 +26,6 @@ class ComposerStaticInitad258def59f591c6a7e308977d7c47dd
         'P' => 
         array (
             'PhpOption\\' => 10,
-            'PHPMailer\\PHPMailer\\' => 20,
         ),
         'O' => 
         array (
@@ -74,10 +73,6 @@ class ComposerStaticInitad258def59f591c6a7e308977d7c47dd
         'PhpOption\\' => 
         array (
             0 => __DIR__ . '/..' . '/phpoption/phpoption/src/PhpOption',
-        ),
-        'PHPMailer\\PHPMailer\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/phpmailer/phpmailer/src',
         ),
         'Others\\' => 
         array (
