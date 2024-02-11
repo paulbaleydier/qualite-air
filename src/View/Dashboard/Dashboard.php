@@ -24,17 +24,24 @@ class Dashboard extends View
                 <div class="row">
                     <div class="col-6 d-flex justify-content-center">
                         <div class="chart-container" style="position: relative; height:30vh; width:30vw">
-                            <canvas id="chart-test"></canvas>
+                            <canvas id="chart-usualgas"></canvas>
                         </div>
                     </div>
                     <div class="col-6 d-flex justify-content-center">
                         <div class="chart-container" style="position: relative; height:30vh; width:30vw">
-                            <canvas id="lineChart"></canvas>
+                            <canvas id="chart-blendorganic"></canvas>
                         </div>
                     </div>
                 </div>
+
+                <div class="row mt-4">
+                    <div class="col-6 d-flex justify-content-center">
+                        <canvas id="chart-fineparticles"></canvas>
+                    </div>
+                  
+                </div>
             </div>
-    
+
         </div>
 <?php
     }

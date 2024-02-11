@@ -75,12 +75,19 @@ class View
                                 <?php } ?>
 
                                 <li class="nav-item">
-                                    <a href="" class="nav-link">
+                                    <a href="index.php?controller=Settings&view=UserManager" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Gestion utilisateur</p>
                                     </a>
                                 </li>
                             </ul>
+                        </li>
+
+                        <li class="nav-item">
+                            <a href="index.php?controller=Dashboard&action=debug" class="nav-link">
+                                <i class="nav-icon fa-solid fa-code"></i>
+                                <p> Dev </p>
+                            </a>
                         </li>
 
                     </ul>
