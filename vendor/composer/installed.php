@@ -1,9 +1,9 @@
 <?php return array(
     'root' => array(
         'name' => 'paul/qualite-air',
-        'pretty_version' => 'dev-main',
-        'version' => 'dev-main',
-        'reference' => 'c43d2dc938ab368365a94c66f7fa253ab215fc5b',
+        'pretty_version' => 'dev-master',
+        'version' => 'dev-master',
+        'reference' => '14696a331f8d4e6e86e5e5188e04b36ce4964d2a',
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -29,9 +29,9 @@
             'dev_requirement' => false,
         ),
         'paul/qualite-air' => array(
-            'pretty_version' => 'dev-main',
-            'version' => 'dev-main',
-            'reference' => 'c43d2dc938ab368365a94c66f7fa253ab215fc5b',
+            'pretty_version' => 'dev-master',
+            'version' => 'dev-master',
+            'reference' => '14696a331f8d4e6e86e5e5188e04b36ce4964d2a',
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
