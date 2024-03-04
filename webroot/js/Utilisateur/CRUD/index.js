@@ -133,4 +133,8 @@ function loadData() {
         let idEl = $(value).attr("id");
         $(value).val(dataLoad[idEl]);
     });
+
+    if (dataLoad["google_id"] !== null) {
+        $("#reset-password").css({"display": "none"})
+    }
 }

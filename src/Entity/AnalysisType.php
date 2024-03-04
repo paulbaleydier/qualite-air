@@ -7,6 +7,7 @@ class AnalysisType extends Entity {
     public string|null $name;
     public string|null $shortName;
     public string|null $unitType;
+    public string|null $color;
     public int|null $criticalValue;
  
 

@@ -24,7 +24,7 @@ class Model
         $password = Config::get("DB_PASSWORD");
 
         try {
-            self::$pdo = new PDO('mysql:host=' . $host . ';dbname=' . static::$database, $username, $password);
+            self::$pdo = new PDO('mysql:host=' . $host . ';dbname=' . static::$database . ';charset=utf8mb4', $username, $password);
             self::$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         } catch (PDOException $e) {
             die("Erreur de connexion à la base de données : " . $e->getMessage());
@@ -92,13 +92,14 @@ class Model
 
 
 
-    public static function insertObject(object $data)
+    public static function insertObject(object $data, $returnObj = false)
     {
         $pdo = self::getInstance();
         $dataArray = (array)$data;
 
-        $columns = implode(', ', array_keys($dataArray));
-        $values = ':' . implode(', :', array_keys($dataArray));
+        
+        $columns = empty($dataArray) ? "" : implode(', ', array_keys($dataArray));
+        $values = empty($dataArray) ? "" : ':' . implode(', :', array_keys($dataArray));
 
         $sql = "INSERT INTO " . static::$table . "($columns) VALUES ($values);";
 
@@ -107,7 +108,9 @@ class Model
             $req->bindValue(":$key", $value);
         }
 
-        return $req->execute();
+        $req->execute();
+
+        return !$returnObj ? (string) $pdo->lastInsertId() : self::getByID($pdo->lastInsertId());
     }
 
     public static function update($id, array $data)
@@ -121,6 +124,7 @@ class Model
 
         $setClause = implode(', ', $setter);
 
+
         $sql = "UPDATE " . static::$table . " SET $setClause WHERE " . static::$id . " = :id";
         $req = $pdo->prepare($sql);
 
@@ -129,7 +133,7 @@ class Model
         foreach ($data as $key => $value) {
             $req->bindValue(":$key", $value);
         }
-
+        
         return $req->execute();
     }
 

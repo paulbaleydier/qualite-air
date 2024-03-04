@@ -10,6 +10,15 @@ $(document).ready(function () {
         },
         "columns": [
             { 
+                title: 'Compte Google',
+                className: 'text-center',
+                width: '5%',
+                data: 'google_id',
+                render: function (a,b,row) {
+                    return row.google_id !== null ? '<i class="text-success fa-solid fa-circle">1</i>' : '<i class="text-danger fa-solid fa-circle">0</i>'
+                }
+            },
+            { 
                 title: 'Nom',
                 className: 'text-center',
                 width: '20%',
@@ -42,10 +51,12 @@ $(document).ready(function () {
                 }
             }
         ],
-        "paging": false,         
+        "paging": true,         
         "ordering": true,       
         "searching": true,     
         "scrollCollapse": true,
+        // responsive: true,
+        "responsive": true,
         "scrollY": '50vh',
         "info": true,         
         "lengthMenu": [5, 10, 25, 50, 100],  

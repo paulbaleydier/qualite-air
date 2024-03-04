@@ -1,7 +1,7 @@
 <?php
 namespace Controller;
 
-use Model\Utilisateur\Utilisateur;
+use Model\Utilisateur as ModelUtilisateur;
 
 class Settings extends Controller {
 
@@ -11,9 +11,8 @@ class Settings extends Controller {
     }
 
     public function userDataTable(){
-        $users = Utilisateur::getAll();
+        $users = ModelUtilisateur::getAll();
 
-        var_dump($users);
     }
 
 }

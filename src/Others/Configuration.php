@@ -18,16 +18,12 @@ class Configuration
         // Immplemantation du .env 
         self::$dotenv = Dotenv::createImmutable(dirname(dirname(__DIR__)));
         self::$dotenv->load();
-
-        // echo Test::test();
-
-
     }
 
     public static function renderPage()
     {
-        
-        
+
+
         if (isset($_GET['controller'])) {
             $controllerName = $_GET['controller'];
 
@@ -54,21 +50,18 @@ class Configuration
                     $view = new $className();
                     $view::$controller = $controller;
                     $view->render();
-
                 } else {
                     $view = new E404();
                     $view->render();
                 }
-            }else {
+            } else {
                 $view = new E404();
                 $view->render();
             }
         } else {
             $view = new E404();
             $view->render();
-
         }
-
     }
 
     public static function get(string $path)

@@ -1,16 +1,16 @@
-Graphique 1 (Gaz usuel) :
-
-Dioxyde d'azote
-Monoxyde de carbone
-Hydrogène
-
-Graphique 2 (Composés organiques) : 
-
-Éthanol
-Méthane
-Ammoniaque
-
-Graphique 3 (Particules fines) : 
-
-PM_2_5
-PM_10_0
+Composés organiques volatiles:
+Monoxyde de carbonne (CO) : 1 à 1000ppm
+Dioxide d'azote (NO2) : 0.05 à 10ppm
+Ethanol (C2H5OH) : 10 à 500ppm
+Hydrogène (H2) : 1 à 1000ppm
+Amoniaque (NH3) : 1 à 500ppm
+Methane (CH4) : >1000ppm
+ 
+Particules fines :
+PM2.5 : 0 à 999.9µg/m3
+PM10 : 0 à 999.9µg/m3
+ 
+Autres :
+Dioxyde de carbonne (CO2) : 400 à 10000ppm
+Humidité : 0 à 100%
+Température : -40 à 70°C

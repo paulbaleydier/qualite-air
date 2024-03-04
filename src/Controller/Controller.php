@@ -1,6 +1,8 @@
 <?php
 namespace Controller;
 
+use Others\Reponse;
+
 class Controller {
 
 
@@ -15,6 +17,7 @@ class Controller {
         return isset($_GET["view"]) ? $_GET["view"] : null;
     }
 
+    
 }
 
 ?>

@@ -1,7 +1,13 @@
 <IfModule mod_rewrite.c>
-    RewriteEngine On
-    RewriteBase /IRUP/qualiter-air/
+RewriteEngine On
 
-    # Rediriger toutes les requêtes vers /webroot/index.php
-    RewriteRule ^$ webroot/index.php [L]
+# Vérifier si &controller n'est pas présent dans la requête
+RewriteCond %{QUERY_STRING} !controller= [NC]
+
+# Vérifier si &view n'est pas présent dans la requête
+RewriteCond %{QUERY_STRING} !view= [NC]
+
+# Rediriger vers index.php avec les paramètres par défaut
+RewriteRule ^(.*)$ index.php?controller=Dashboard&view=Dashboard [L,QSA]
+
 </IfModule>

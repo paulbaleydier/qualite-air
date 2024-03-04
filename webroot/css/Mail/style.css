@@ -1,0 +1,31 @@
+.container-wrapper .card {
+    width: 25vw;
+    height: auto;
+    background-color: #FFF;
+    border: 1px solid white;
+    min-width: 300px;
+    
+} 
+
+.container-wrapper .card-header {
+    color: black;
+}
+
+.container-wrapper .card-body {
+    padding: 10%;
+}
+
+.container-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: url("bg.jpeg");
+    background-position: center;
+    background-size: cover;
+}
+
+#btn-reset {
+    width: 100%;
+    height: 100%;
+}

@@ -13,14 +13,15 @@ ini_set('display_errors', 1);
 ini_set('log_errors', 1);
 ini_set('error_log', dirname(dirname(__DIR__)) . '/log/erreurs.log');
 
+date_default_timezone_set('Europe/Paris');
+
 $auth = new Authentification();
 
 try {
-    $auth->init();
+    //$auth->init();
 
     Configuration::init();
     Configuration::renderPage();
-    
     
 }catch (Exception $e) {
     echo "". $e->getMessage() ."";

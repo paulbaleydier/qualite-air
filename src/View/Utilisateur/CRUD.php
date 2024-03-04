@@ -12,6 +12,7 @@ class CRUD extends View
 
     public function __construct()
     {
+        parent::__construct();
         self::$dependency = Dependency::loadDependency(array(DepEnum::SWEATALERT2), get_class());
     }
 

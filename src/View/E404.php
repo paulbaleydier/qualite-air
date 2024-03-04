@@ -11,6 +11,7 @@ class E404 extends View
 
     public function __construct()
     {
+        parent::__construct(false);
         self::$dependency = Dependency::loadDependency(array(), get_class());
         self::$header = false;
         self::$footer = false;

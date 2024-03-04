@@ -22,11 +22,13 @@ class DepEnum
         "css" => [
             "vendor/almasaeed2010/adminlte/plugins/overlayScrollbars/css/OverlayScrollbars.min.css",
             "vendor/almasaeed2010/adminlte/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css",
+            "vendor/almasaeed2010/adminlte/plugins/bootstrap-colorpicker/css/bootstrap-colorpicker.min.css",
             "vendor/almasaeed2010/adminlte/dist/css/adminlte.min.css",
         ],
         "js" => [
             "vendor/almasaeed2010/adminlte/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js",
             "vendor/almasaeed2010/adminlte/plugins/bootstrap/js/bootstrap.bundle.min.js",
+            "vendor/almasaeed2010/adminlte/plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.min.js",
             "vendor/almasaeed2010/adminlte/dist/js/adminlte.min.js"
         ]
     ];
@@ -51,6 +53,24 @@ class DepEnum
         "js" => ["vendor/almasaeed2010/adminlte/plugins/chart.js/Chart.min.js"]
     ];
 
+    const DATERANGEPICKER = [
+        "css" => [
+            "vendor/almasaeed2010/adminlte/plugins/daterangepicker/daterangepicker.css"
+        ],
+        "js" => [
+            "vendor/almasaeed2010/adminlte/plugins/moment/moment.min.js",
+            "vendor/almasaeed2010/adminlte/plugins/daterangepicker/daterangepicker.js",
+            
+        ]
+        ];
+    
+        const JQUERY_KNOB = [
+            "css" => [],
+            "js" => [
+                "vendor/almasaeed2010/adminlte/plugins/jquery-knob/jquery.knob.min.js"
+            ]
+            ];
+
     /**
      * 
      * PLUGINS
@@ -74,5 +94,14 @@ class DepEnum
     const ICHECK_BOOTSTRAP = [
         "css" => ["vendor/almasaeed2010/adminlte/plugins/icheck-bootstrap/icheck-bootstrap.min.css"],
         "js" => []
+    ];
+
+    const DAYJS = [
+        "css" => [
+            ""
+        ],
+        "js" => [
+            "plugins/dayjs/dayjs.min.js"
+        ]
     ];
 }

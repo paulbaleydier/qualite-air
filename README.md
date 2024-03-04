@@ -19,3 +19,6 @@ Pour la configuration, il peut être nécessaire de revoir la fonction `renderPa
 
 
 > Projet BTS SN 2022 - 2024
+
+
+`apt-get install php-mysql` pour PDO

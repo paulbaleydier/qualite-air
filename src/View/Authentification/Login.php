@@ -11,6 +11,7 @@ class Login extends View
 
     public function __construct()
     {
+        parent::__construct(false);
         self::$dependency = Dependency::loadDependency(array(DepEnum::SWEATALERT2), get_class());
         self::$header = false;
         self::$footer = false;
@@ -38,7 +39,33 @@ class Login extends View
                         </div>
                     </form>
                     <button class="btn btn-primary" id="btn-connexion">Connexion</button>
+                    <div class="mt-2">
+                        <!--
+                        <div id="g_id_onload" data-client_id="47320426225-gkvnl76ie5e1c7569l3utdil4reoa113.apps.googleusercontent.com" data-context="signin" data-ux_mode="redirect" data-login_uri="https://qda.duckdns.org/webroot/index.php?controller=Authentification&action=loginWithGoogle" data-auto_prompt="false">
+                        </div>
 
+                        <div class="g_id_signin" data-type="standard" data-shape="rectangular" data-theme="outline" data-text="continue_with" data-size="large" data-logo_alignment="left">
+                        </div>
+                        -->
+                        <div id="g_id_onload"
+                            data-client_id="47320426225-gkvnl76ie5e1c7569l3utdil4reoa113.apps.googleusercontent.com"
+                            data-context="signin"
+                            data-ux_mode="popup"
+                            data-login_uri="https://qda.duckdns.org/webroot/index.php?controller=Authentification&action=loginWithGoogle"
+                            data-auto_select="false"
+                            data-itp_support="true">
+                        </div>
+
+                        <div class="g_id_signin"
+                            data-type="standard"
+                            data-shape="rectangular"
+                            data-theme="outline"
+                            data-text="signin_with"
+                            data-size="large"
+                            data-logo_alignment="left">
+                        </div>
+                    </div>
+                    <small><a id="resetMdp">Mots de passe oublié ? </a></small>
                     <div class="alert alert-danger mt-2" role="alert" id="connexion-fail" style="display: none;">
                         Veuillez vérifier vos informations d'identification et réessayer
                     </div>
@@ -46,6 +73,7 @@ class Login extends View
             </div>
         </div>
 
+        <script src="https://accounts.google.com/gsi/client" async></script>
 
 <?php
     }

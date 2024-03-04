@@ -22,20 +22,32 @@ class Dashboard extends Controller {
         Reponse::create(Reponse::OK, $finalData)->sendJson();
     }
 
-    public function getUsualGas() {
-        Reponse::create(Reponse::OK, Analysis::getDataChart("1,2,3"))->sendJson();
+    public function getChartData() {
+        if ( !filter_has_var(INPUT_GET, "args") || !filter_has_var(INPUT_GET, "hourlySelected")) {
+            Reponse::create(Reponse::ERROR, "Paramètre incorrect.")->sendJson();
+        }
+        $args = filter_input(INPUT_GET, "args");
+        $hourlySelected = filter_input(INPUT_GET, "hourlySelected");
+        Reponse::create(Reponse::OK, Analysis::getDataChart($args, whereHourly: $hourlySelected))->sendJson();
     }
 
-    public function getBlendOrganic() {
-        Reponse::create(Reponse::OK, Analysis::getDataChart("4,5,6"))->sendJson();
+    public function getDataChartN() {
+        if ( !filter_has_var(INPUT_GET, "args") || !filter_has_var(INPUT_GET, "hourlySelected")) {
+            Reponse::create(Reponse::ERROR, "Paramètre incorrect.")->sendJson();
+        }
+        $args = filter_input(INPUT_GET, "args");
+        $hourlySelected = filter_input(INPUT_GET, "hourlySelected");
+        Reponse::create(Reponse::OK, Analysis::getDataChartN($args, whereHourly: $hourlySelected))->sendJson();
     }
 
-    public function getFineParticles() {
-        Reponse::create(Reponse::OK, Analysis::getDataChart("7,8"))->sendJson();
+    public function getStatsToday() {
+        Reponse::create(Reponse::OK, Analysis::getStatsToday())->sendJson();
     }
+
+
 
     public function debug() {
-        echo "<pre>";
+        /*echo "<pre>";
         echo "</br> Analysis (Gaz usuel) : ";
         var_dump(Analysis::getDataChart("1,2,3"));
         echo "</br> Analysis (Composés organiques) : ";
@@ -47,6 +59,8 @@ class Dashboard extends Controller {
         // echo "</br> Utilisateurs : ";
         // var_dump(Utilisateur::getAll());
         // echo "</br>";
+        */
+        var_dump($_SESSION);
         die();
     }
 

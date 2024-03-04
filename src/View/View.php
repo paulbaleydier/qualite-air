@@ -5,6 +5,7 @@ namespace View;
 use Entity\Utilisateur;
 use Others\dependency\Dependency;
 use Others\dependency\DepEnum;
+use Others\Authentification;
 
 class View
 {
@@ -16,8 +17,9 @@ class View
     public static $sideBar = true;
 
 
-    public function __construct()
+    public function __construct($accessLogin = true)
     {
+        Authentification::redirectionLogin($accessLogin);
         self::$dependency = Dependency::loadDependency(array(DepEnum::DATATABLESJS), get_called_class());
         // self::$controller = str_replace("View", "Controller", get_called_class());
 
@@ -37,7 +39,7 @@ class View
                 <!-- Sidebar user panel -->
                 <div class="user-panel mt-3 pb-3 mb-3 d-flex justify-content-center">
                     <div>
-                        <a href="#" class="d-block"><?php echo ucfirst($_SESSION["nom"]) . " " . ucfirst($_SESSION["prenom"]) ?></a>
+                        <a href="#" class="d-block"><?php echo ucfirst($_SESSION["nom"] ?? "") . " " . ucfirst($_SESSION["prenom"] ?? "") ?></a>
                     </div>
                 </div>
 
@@ -64,6 +66,14 @@ class View
                                 </p>
                             </a>
                             <ul class="nav nav-treeview">
+
+                                <li class="nav-item">
+                                    <a href="index.php?controller=Settings&view=UserManager" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Compte</p>
+                                    </a>
+                                </li>
+
                                 <?php if (Utilisateur::hasPermission(Utilisateur::ADMIN)) { ?>
 
                                     <li class="nav-item">
@@ -74,22 +84,24 @@ class View
                                     </li>
                                 <?php } ?>
 
+                                <?php if (Utilisateur::hasPermission(Utilisateur::ADMIN)) { ?>
                                 <li class="nav-item">
-                                    <a href="index.php?controller=Settings&view=UserManager" class="nav-link">
+                                    <a href="index.php?controller=Analysis&view=GestionAnalysis#" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
-                                        <p>Gestion utilisateur</p>
+                                        <p>Gestion Analyse</p>
                                     </a>
                                 </li>
+                                <?php } ?>
                             </ul>
                         </li>
-
+                        <?php if (Utilisateur::hasPermission(Utilisateur::ADMIN)) { ?>
                         <li class="nav-item">
-                            <a href="index.php?controller=Dashboard&action=debug" class="nav-link">
+                            <a href="index.php?controller=Dev&view=Dev" class="nav-link">
                                 <i class="nav-icon fa-solid fa-code"></i>
                                 <p> Dev </p>
                             </a>
                         </li>
-
+                        <?php } ?>
                     </ul>
                 </nav>
                 <!-- /.sidebar-menu -->
@@ -135,6 +147,14 @@ class View
     {
     }
 
+    public function defaultModal()
+    {
+    }
+
+    public function modal()
+    {
+    }
+
     public function footer()
     {
     ?>
@@ -158,7 +178,8 @@ class View
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
             <meta name="description" content="Description de votre page">
             <meta name="keywords" content="Mot-clé 1, Mot-clé 2, ...">
-
+            <link rel="manifest" href="manifest.json">
+            <link rel="shortcut icon" href="/webroot/assets/icons.png" type="image/x-icon">
             <title>Qualité de l'air</title>
             <!-- Ajoutez ici vos liens vers les fichiers CSS, scripts, etc. -->
             <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&amp;display=fallback">
@@ -178,12 +199,15 @@ class View
                 <!-- <div class="content-wrapper"></div> -->
                 <?php static::contentBody(); ?>
 
-                <div id="sidebar-overlay"></div>
+                <!-- <div id="sidebar-overlay"></div> -->
                 <?php if (static::$footer) static::footer(); ?>
+               
             </div>
-        </body>
 
+        </body>
+        
         <?php
+        echo self::sw();
         echo static::$dependency["js"];
         echo static::script();
         ?>
@@ -194,5 +218,24 @@ class View
 
     protected function script()
     {
+    }
+
+    private function sw()
+    {
+        $sw = <<<END
+        <script>
+        
+            if ('serviceWorker' in navigator) {
+                navigator.serviceWorker.register('/webroot/serviceworker.js')
+                    .then(registration => {
+                        console.log('Service Worker enregistré avec succès:', registration);
+                    })
+                    .catch(error => {
+                        console.error("Erreur d'enregistrement du Service Worker:", error);
+                    });
+            }
+        </script>
+        END;
+        return $sw;
     }
 }
