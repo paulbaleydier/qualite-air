@@ -16,14 +16,7 @@ class Authentification
 
     public static function redirectionLogin($accessLogin)
     {
-        /*
-        $urlBypass = array(
-            "controller=Authentification&view=Login",
-            "controller=Authentification&action=login",
-            "index.php?controller=Authentification&action=ResetMDP",
-            "index.php?controller=Authentification&view=ResetMDP"
-        );
-        */
+
         if (!isset($_GET["controller"])) {
             header('Location: ./index.php?controller=Dashboard&view=Dashboard');
             exit;

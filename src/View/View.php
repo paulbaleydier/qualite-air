@@ -178,7 +178,7 @@ class View
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
             <meta name="description" content="Description de votre page">
             <meta name="keywords" content="Mot-clé 1, Mot-clé 2, ...">
-            <link rel="manifest" href="manifest.json">
+            <link rel="manifest" href="webroot/manifest.json">
             <link rel="shortcut icon" href="/webroot/assets/icons.png" type="image/x-icon">
             <title>Qualité de l'air</title>
             <!-- Ajoutez ici vos liens vers les fichiers CSS, scripts, etc. -->

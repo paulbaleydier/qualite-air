@@ -105,7 +105,7 @@ class Utilisateur extends Controller
         $mail = new EntityMail();
 
         $contentMail = file_get_contents("/var/www/html/webroot/assets/mails/reset_mdp.html");
-        $contentMail = str_replace("{url_reset_mdp}", "https://qda.duckdns.org/webroot/index.php?controller=Authentification&view=ResetMDP&token=" . $token . "&userID=" . $id, $contentMail);
+        $contentMail = str_replace("{url_reset_mdp}", "https://qda.duckdns.org/index.php?controller=Authentification&view=ResetMDP&token=" . $token . "&userID=" . $id, $contentMail);
 
         $mail->addHtmlPage()->addEmail(array($user->email))->addBody($contentMail)->addSubject("Réinitialisation du mot de passe")->send();
         

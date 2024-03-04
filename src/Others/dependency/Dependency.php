@@ -46,7 +46,7 @@ class Dependency {
         
 
         // Load js and css of view 
-        $defaultDir = dirname(dirname(dirname(__DIR__))) . "/webroot";
+        $defaultDir = "webroot";
 
         // Default files
         $defaultCssFiles = self::processFiles($defaultDir, 'default', 'css');
@@ -97,9 +97,9 @@ class Dependency {
     
             return array_map(function ($fileName) use ($fileType, $className, $subFile) {
                 if ( $fileType == "css" ){
-                    return " <link rel='stylesheet' href='" . ("../webroot/$fileType/$className/$subFile$fileName") ."?v=" . time() . "'>\n";
+                    return " <link rel='stylesheet' href='" . ("webroot/$fileType/$className/$subFile$fileName") ."?v=" . time() . "'>\n";
                 }else {
-                    return "<script src='" . ("../webroot/$fileType/$className/$subFile$fileName") ."?v=" . time() . "'></script>\n";
+                    return "<script src='" . ("webroot/$fileType/$className/$subFile$fileName") ."?v=" . time() . "'></script>\n";
                 }
             }, $contenuDossier);
         }
@@ -110,7 +110,7 @@ class Dependency {
     
 
     private static function getPath(string $dependency) {
-        return "../". $dependency;
+        return $dependency;
     }
 
 }

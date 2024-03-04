@@ -2,7 +2,7 @@
     "name": "Qualité d'air",
     "short_name": "QDA",
     "description": "Application qualite d'air BTS 2022 - 2024",
-    "start_url": "/webroot/index.php",
+    "start_url": "../index.php",
     "display": "standalone",
     "background_color": "#ffffff",
     "theme_color": "#000000",
