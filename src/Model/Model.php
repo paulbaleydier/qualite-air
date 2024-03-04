@@ -19,12 +19,13 @@ class Model
     private static function connect()
     {
         $host = Config::get("DB_HOST");
+        $port = Config::get("DB_PORT");
         static::$database = static::$database ?? Config::get("DB_DATABASE");
         $username = Config::get("DB_USERNAME");
         $password = Config::get("DB_PASSWORD");
 
         try {
-            self::$pdo = new PDO('mysql:host=' . $host . ';dbname=' . static::$database . ';charset=utf8mb4', $username, $password);
+            self::$pdo = new PDO('mysql:host=' . $host . ';port=' . $port . ';dbname=' . static::$database . ';charset=utf8mb4', $username, $password);
             self::$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         } catch (PDOException $e) {
             die("Erreur de connexion à la base de données : " . $e->getMessage());
