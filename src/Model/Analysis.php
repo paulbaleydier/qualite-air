@@ -52,7 +52,7 @@ class Analysis extends Model
     {
         $model = static::getInstance();
 
-        $sql = "
+         $sql = "
         SELECT
             aType.*,
             ROUND(a.value,2) as value,
@@ -97,7 +97,6 @@ class Analysis extends Model
             }
             $data["datasets"] = array_values($data["datasets"]);
             return $data;
-            // return $req->fetchall(PDO::FETCH_ASSOC);
         }
         return array();
     }
@@ -156,7 +155,7 @@ class Analysis extends Model
             atype.color
         FROM 
             analysis AS a
-        LEFT JOIN analysis_type AS atype
+        JOIN analysis_type AS atype
             ON (atype.id = a.`type`)
         WHERE
             DATE(a.ts) = CURDATE()

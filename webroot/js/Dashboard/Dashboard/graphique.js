@@ -10,7 +10,7 @@ const options = {
     animation: false,
     scales: {
         x: {
-            type: 'time', // Utilisez l'échelle temporelle pour l'axe X
+            type: 'time', 
             time: {
                 unit: 'minute', // Unité de temps (ajustez selon vos besoins)
                 displayFormats: {
@@ -186,20 +186,14 @@ $(document).ready(function () {
         })
     });
 
-    // setInterval(() => {
-    //     $(".switchChart a.active").each(function () {
-    //         var switchSelect = $(this).attr("href");
-    //         reloadChartByHref(switchSelect);
-    //         $("#updateTime").val(moment().format("D/MM/YYYY H:mm:ss"))
-    //     })
-    // }, (1000 * 60) * 5);
+
     setInterval(() => {
         $(".switchChart a.active").each(function () {
             var switchSelect = $(this).attr("href");
             reloadChartByHref(switchSelect);
             loadKnobStats();
 
-            $("#updateTime").val(moment().format("D/MM/YYYY H:mm:ss"))
+            $("#updateTime").val(moment().format("DD/MM/YYYY H:mm:ss"))
         })
     }, (1000 * 60));
 });

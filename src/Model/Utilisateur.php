@@ -99,6 +99,20 @@ class Utilisateur extends Model {
         }
     }
 
+    // public static function test() {
+    //     $model = self::getInstance();
+
+    //     $sql = "SELECT * FROM " . self::$table . " as u WHERE u.id = 44";
+
+    //     $req = $model->query($sql);
+
+    //     // var_dump($req);die();
+    //     // $user = $req->fetchAll(PDO::FETCH_CLASS, 'Entity\Utilisateur', array($req->errorInfo()))[0];
+    //     $user = $req->fetchObject(\Entity\Utilisateur::class);
+    //     // var_dump($req->fetch(PDO::FETCH_ASSOC));
+    //     var_dump($user);
+    // } 
+
     
 
 

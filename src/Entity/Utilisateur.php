@@ -1,6 +1,7 @@
 <?php
 namespace Entity;
 
+use Model\Utilisateur as ManagerUser;
 
 class Utilisateur extends Entity  {
 
@@ -13,9 +14,24 @@ class Utilisateur extends Entity  {
     public string|null $google_id;
     public string|null $createdDate;
 
+    public string|null $_cache;
+
     // Enumérations permissions
     const ADMIN = 1;
     const USER = 2;
+
+    function __construct(array $data = array()) {
+        parent::__construct($data);
+    }
+
+    public static function saveCache() {
+        if (  isset($_SESSION["_cache"])) {
+            if ( session_status() === PHP_SESSION_ACTIVE ) {
+                ManagerUser::update($_SESSION["id"], array("_cache" => json_encode($_SESSION["_cache"])));
+            }
+        }
+    }
+
 
     
     public static function hasPermission(int $perm): bool {
@@ -23,6 +39,10 @@ class Utilisateur extends Entity  {
             return $_SESSION["permission"] >= $perm;
         }
         return false;
+    }
+
+    public static function getID() {
+        return $_SESSION["id"];
     }
 
 }

@@ -1,7 +1,28 @@
 
 
+#RewriteEngine On
+#RewriteBase /
+
+# Autoriser l'accès direct à certains fichiers ou répertoires
+#RewriteCond %{REQUEST_URI} !^/webroot/
+#RewriteCond %{REQUEST_URI} !^/vendor/almasaeed2010/adminlte/plugins/
+#RewriteCond %{REQUEST_URI} !^/plugins/
+#RewriteCond %{REQUEST_URI} !^/vendor/almasaeed2010/adminlte/dist/
+
+# Exclure les requêtes contenant déjà index.php dans l'URL
+#RewriteCond %{REQUEST_URI} !^/index.php
+
+# Rediriger tous les accès vers index.php avec l'URL demandée en paramètre
+
+#RewriteRule ^(.*)$ index.php [QSA,L]
+
+
 RewriteEngine On
 RewriteBase /
+
+# Redirection spécifique pour /webroot/index.php vers /index.php
+RewriteCond %{REQUEST_URI} ^/webroot/index\.php$
+RewriteRule ^webroot/index\.php$ /index.php [QSA,L,R=301]
 
 # Autoriser l'accès direct à certains fichiers ou répertoires
 RewriteCond %{REQUEST_URI} !^/webroot/

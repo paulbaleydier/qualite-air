@@ -13,7 +13,7 @@ class UsersManagement extends View
     public function __construct()
     {
         parent::__construct();
-        self::$dependency = Dependency::loadDependency(array(DepEnum::DATATABLESJS, DepEnum::SWEATALERT2), get_class());
+        self::$dependency = Dependency::loadDependency(array(DepEnum::DATATABLESJS), get_class());
     }
 
     public function contentBody()

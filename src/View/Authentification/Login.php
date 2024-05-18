@@ -12,7 +12,7 @@ class Login extends View
     public function __construct()
     {
         parent::__construct(false);
-        self::$dependency = Dependency::loadDependency(array(DepEnum::SWEATALERT2), get_class());
+        self::$dependency = Dependency::loadDependency(array(), get_class());
         self::$header = false;
         self::$footer = false;
         self::$sideBar = false;
@@ -65,7 +65,7 @@ class Login extends View
                             data-logo_alignment="left">
                         </div>
                     </div>
-                    <small><a id="resetMdp">Mots de passe oublié ? </a></small>
+                    <small><a id="resetMdp">Mot de passe oublié ? </a></small>
                     <div class="alert alert-danger mt-2" role="alert" id="connexion-fail" style="display: none;">
                         Veuillez vérifier vos informations d'identification et réessayer
                     </div>

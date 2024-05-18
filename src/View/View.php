@@ -27,19 +27,25 @@ class View
 
     public function sideBar()
     {
-?>
+        ?>
         <aside class="main-sidebar sidebar-dark-primary elevation-4">
             <!-- Brand Logo -->
-            <a href="index.php?controller=Dashboard&view=Dashboard" class="brand-link text-center">
+
+
+            <a href="index.php?controller=Dashboard&view=Dashboard" class="brand-link">
+                <img src="webroot/assets/icons.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
+                    style="opacity: .8">
                 <span class="brand-text font-weight-light">QDA</span>
             </a>
 
             <!-- Sidebar -->
             <div class="sidebar">
                 <!-- Sidebar user panel -->
-                <div class="user-panel mt-3 pb-3 mb-3 d-flex justify-content-center">
-                    <div>
-                        <a href="#" class="d-block"><?php echo ucfirst($_SESSION["nom"] ?? "") . " " . ucfirst($_SESSION["prenom"] ?? "") ?></a>
+
+                <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+                    <div class="info">
+                        <a href="#"
+                            class="d-block"><?php echo ucfirst($_SESSION["nom"] ?? "") . " " . ucfirst($_SESSION["prenom"] ?? "") ?></a>
                     </div>
                 </div>
 
@@ -47,9 +53,6 @@ class View
                 <!-- Sidebar Menu -->
                 <nav class="mt-2">
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-
-
-
                         <li class="nav-item">
                             <a href="index.php?controller=Dashboard&view=Dashboard" class="nav-link">
                                 <i class="nav-icon fa-solid fa-chart-line"></i>
@@ -85,23 +88,34 @@ class View
                                 <?php } ?>
 
                                 <?php if (Utilisateur::hasPermission(Utilisateur::ADMIN)) { ?>
-                                <li class="nav-item">
-                                    <a href="index.php?controller=Analysis&view=GestionAnalysis" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Gestion Analyse</p>
-                                    </a>
-                                </li>
+                                    <li class="nav-item">
+                                        <a href="index.php?controller=Analysis&view=GestionAnalysis" class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Gestion Analyse</p>
+                                        </a>
+                                    </li>
                                 <?php } ?>
                             </ul>
                         </li>
                         <?php if (Utilisateur::hasPermission(Utilisateur::ADMIN)) { ?>
+                            <li class="nav-item">
+                                <a href="index.php?controller=Dev&view=Dev" class="nav-link">
+                                    <i class="nav-icon fa-solid fa-code"></i>
+                                    <p> Dev </p>
+                                </a>
+                            </li>
+                        <?php } ?>
+                    </ul>
+
+                    <ul class="nav nav-pills nav-sidebar flex-column url-end-block" data-widget="treeview" role="menu"
+                        data-accordion="false">
+
                         <li class="nav-item">
-                            <a href="index.php?controller=Dev&view=Dev" class="nav-link">
-                                <i class="nav-icon fa-solid fa-code"></i>
-                                <p> Dev </p>
+                            <a id="openNotifications" class="nav-link">
+                                <i class="nav-icon fa-solid fa-bell"></i>
+                                <p>Notifications</p>
                             </a>
                         </li>
-                        <?php } ?>
                     </ul>
                 </nav>
                 <!-- /.sidebar-menu -->
@@ -109,30 +123,37 @@ class View
             <!-- /.sidebar -->
         </aside>
 
-    <?php
+        <?php
     }
 
     public function header()
     {
-    ?>
+        ?>
         <!-- Code HTML pour la barre de navigation -->
-        <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+        <nav class="main-header navbar navbar-expand ">
 
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+                    <a class="nav-link text-dark" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
                 </li>
 
             </ul>
 
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                    <a class="nav-link" data-widget="fullscreen" href="#" role="button">
+                    <button class="text-dark nav-link toggle-dark-mode btn ">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                </li>
+
+
+                <li class="nav-item">
+                    <a class="text-dark nav-link" data-widget="fullscreen" href="#" role="button">
                         <i class="fas fa-expand-arrows-alt"></i>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="index.php?controller=Authentification&action=logout" role="button">
+                    <a class="text-dark nav-link" href="index.php?controller=Authentification&action=logout" role="button">
                         <i class="fas fa-door-open"></i>
                     </a>
                 </li>
@@ -140,7 +161,7 @@ class View
         </nav>
 
 
-    <?php
+        <?php
     }
 
     public function contentBody()
@@ -149,6 +170,28 @@ class View
 
     public function defaultModal()
     {
+        ?>
+        <div class="modal" tabindex="-1" id="modalNotifications">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Notifications</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <ul id="notifications-list" class="list-group">
+                            
+                        </ul>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <?php
     }
 
     public function modal()
@@ -157,19 +200,19 @@ class View
 
     public function footer()
     {
-    ?>
+        ?>
         <footer class="main-footer">
             <strong>Copyright © 2024 PVM-TECH.</strong>
             <div class="float-right d-none d-sm-inline-block">
                 <b>Version</b> 0.0.1
             </div>
         </footer>
-    <?php
+        <?php
     }
 
     public function render()
     {
-    ?>
+        ?>
         <!DOCTYPE html>
         <html lang="fr" style="height: auto;">
 
@@ -182,30 +225,35 @@ class View
             <link rel="shortcut icon" href="/webroot/assets/icons.png" type="image/x-icon">
             <title>Qualité de l'air</title>
             <!-- Ajoutez ici vos liens vers les fichiers CSS, scripts, etc. -->
-            <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&amp;display=fallback">
+            <link rel="stylesheet"
+                href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&amp;display=fallback">
 
             <?php echo static::$dependency["css"]; ?>
 
         </head>
 
-        <body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed">
+        <body class="hold-transition sidebar-mini">
             <!-- <body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed sidebar-collapse"> -->
             <div class="wrapper">
-                <?php if (static::$header) static::header(); ?>
+                <?php if (static::$header)
+                    static::header(); ?>
 
-                <?php if (static::$sideBar) static::sideBar(); ?>
+                <?php if (static::$sideBar)
+                    static::sideBar(); ?>
 
 
                 <!-- <div class="content-wrapper"></div> -->
                 <?php static::contentBody(); ?>
 
                 <!-- <div id="sidebar-overlay"></div> -->
-                <?php if (static::$footer) static::footer(); ?>
-               
+                <?php if (static::$footer)
+                    static::footer(); ?>
+
+                <?php static::defaultModal(); ?>
             </div>
 
         </body>
-        
+
         <?php
         echo self::sw();
         echo static::$dependency["js"];
@@ -213,7 +261,7 @@ class View
         ?>
 
         </html>
-<?php
+        <?php
     }
 
     protected function script()

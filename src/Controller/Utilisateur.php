@@ -10,8 +10,7 @@ use Model\UserResetMdp as ModelUserResetMdp;
 use Model\Utilisateur as ModelUser;
 use Model\Utilisateur as ModelUtilisateur;
 use Others\Reponse;
-use PHPMailer\PHPMailer\PHPMailer;
-use PHPMailer\PHPMailer\SMTP;
+
 
 class Utilisateur extends Controller
 {
@@ -129,5 +128,24 @@ class Utilisateur extends Controller
         
         Reponse::create(Reponse::OK, "ok")->sendJson();
 
+    }
+
+    public function changeTheme() {
+        if (!filter_has_var(INPUT_POST, "status")) {
+            Reponse::create(Reponse::ERROR, "Paramètre incorrect.")->sendJson();
+        }
+        $status = filter_input(INPUT_POST, "status");
+
+
+        $_SESSION["_cache"]["darkTheme"] = $status;
+
+        EntityUtilisateur::saveCache();
+
+        Reponse::create(Reponse::OK, "ok")->sendJson();
+
+    }
+
+    public function getCache() {
+        Reponse::create(Reponse::OK, $_SESSION["_cache"])->sendJson();
     }
 }

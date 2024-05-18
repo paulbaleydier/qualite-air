@@ -1,7 +1,11 @@
 <?php
 namespace Controller;
 
+use Entity\Utilisateur;
 use Model\Analysis as ModelAnalysis;
+use Model\AnalysisAlerts;
+use Model\AnalysisAlertsTreat;
+use Entity\AnalysisAlertsTreat as AlertsTreatEntity;
 use Model\AnalysisType;
 use Others\Reponse;
 
@@ -32,6 +36,29 @@ class Analysis extends Controller {
         
         Reponse::create(Reponse::OK, "ok")->sendJson();
         
+    }
+
+    public function getAlerts() {
+        $alerts = AnalysisAlerts::getAlertsForUser(Utilisateur::getID());
+        Reponse::create(Reponse::OK, $alerts)->sendJson();
+    }
+
+    public function treatAlert(){
+        if ( !filter_has_var(INPUT_POST, "id")) {
+            Reponse::create(Reponse::ERROR, "Paramètre incorrect.")->sendJson();
+
+        }
+
+        $id = filter_input(INPUT_POST, "id");
+
+        AnalysisAlertsTreat::insertObject(new AlertsTreatEntity(array("userID" => Utilisateur::getID(), "alertID" => $id)));
+
+        Reponse::create(Reponse::OK, "ok")->sendJson();
+
+    }
+
+    public function alertsHistory() {
+        Reponse::create(Reponse::OK, AnalysisAlerts::getAlertsHistory())->sendJson();
     }
 
 }

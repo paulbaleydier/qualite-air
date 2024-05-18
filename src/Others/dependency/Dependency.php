@@ -11,6 +11,7 @@ class Dependency {
         DepEnum::JQUERY,
         DepEnum::FONTAWESOME,
         DepEnum::ADMINLTE,
+        DepEnum::SWEATALERT2
     ];
 
     public static function loadDependency(array|null $dependency = null , string $class_call) {

@@ -33,6 +33,7 @@ class Authentification
     {
         foreach ($data as $key => $value) {
             if ($key !== "password") $_SESSION[$key] = $value;
+            if ( $key == "_cache") $_SESSION[$key] = json_decode($value, true);
         }
     }
 

@@ -129,7 +129,7 @@ $(function () {
 
 
 function loadData() {
-    $.each($("#card-crud-user").find("input"), function (key, value) {
+    $.each($("#card-crud-user").find("input, select"), function (key, value) {
         let idEl = $(value).attr("id");
         $(value).val(dataLoad[idEl]);
     });
