@@ -24,6 +24,49 @@ $(document).ready(function () {
             })
         });
     });
+
+    $(document).on('click', '#sendAlertDev',function () {
+        $.ajax({
+            type: 'POST',
+            url: 'index.php?controller=Utilisateur&action=sendAlertDev',
+            dataType: 'JSON',
+            success: function (reponse) {
+                if ( reponse?.status == 0 ) {
+                    Swal.fire({
+                        title: "Alerte envoyée",
+                        icon: "success",
+                        showConfirmButton: false,
+                        timer: 1000,
+                        timerProgressBar: true,
+                        width: 400
+                    });
+                }
+                
+            }
+        })
+    });
+
+    $(document).on('click', '#clearAlert',function () {
+        $.ajax({
+            type: 'POST',
+            url: 'index.php?controller=Utilisateur&action=clearAlertDev',
+            dataType: 'JSON',
+            success: function (reponse) {
+                if ( reponse?.status == 0 ) {
+                    Swal.fire({
+                        title: "Alertes supprimées",
+                        icon: "success",
+                        showConfirmButton: false,
+                        timer: 1000,
+                        timerProgressBar: true,
+                        width: 400
+                    });
+                }
+                
+                
+            }
+        })
+    });
 })
 
 window.addEventListener('beforeinstallprompt', (event) => {

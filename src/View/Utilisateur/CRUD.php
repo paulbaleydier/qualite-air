@@ -35,7 +35,7 @@ class CRUD extends View
                                 </div>
 
                                 <div class="col-6 mb-3">
-                                    <label for="prenom" class="form-label">Prenom</label>
+                                    <label for="prenom" class="form-label">Prénom</label>
                                     <input type="text" class="form-control" id="prenom" name="prenom" data-update="prenom">
                                 </div>
 
@@ -54,17 +54,18 @@ class CRUD extends View
 
                                 <div class="col-6">
                                     <div class="form-group">
-                                        <label for="permission" class="form-label">Permissions :</label>
+                                        <label for="permission" class="form-label">Permission :</label>
                                         <select class="custom-select" id="permission" data-update="permission">
                                             <option value="0">Utilisateur</option>
                                             <option value="1">Administrateur</option>
+                                            <option value="2">DEV</option>
                                         </select>
                                     </div>
 
                                 </div>
 
                                 <div class="col-6 d-flex align-items-end justify-content-around">
-                                    <button class="ml-2 btn btn-primary" id="reset-password">Réinitialiser le mots de
+                                    <button class="ml-2 btn btn-primary" id="reset-password">Réinitialiser le mot de
                                         passe</button>
                                 </div>
 
@@ -78,8 +79,9 @@ class CRUD extends View
                             <?php if (isset($_GET["id"])) { ?>
                                 <div class="p-2 d-flex justify-content-around">
                                     <button class="btn btn-danger" id="btn-delete-account"><i
-                                            class="fa-solid fa-xmark me-2"></i>Supprimer le compte</button>
-                                    <button class="btn btn-success" id="btn-save-account"><i class="fa-solid fa-check me-2"></i>
+                                            class="mr-1 fa-solid fa-xmark me-2"></i>Supprimer le compte</button>
+
+                                    <button class=" btn btn-success" id="btn-save-account"><i class="fa-solid fa-check me-2"></i>
                                         Sauvegarder</button>
                                 </div>
                             <?php } else { ?>

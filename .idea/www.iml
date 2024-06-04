@@ -7,7 +7,6 @@
       <sourceFolder url="file://$MODULE_DIR$/src/Model" isTestSource="false" packagePrefix="Model\" />
       <sourceFolder url="file://$MODULE_DIR$/src/Others" isTestSource="false" packagePrefix="Others\" />
       <sourceFolder url="file://$MODULE_DIR$/src/View" isTestSource="false" packagePrefix="View\" />
-      <sourceFolder url="file://$MODULE_DIR$/src/Commands" isTestSource="false" packagePrefix="Commands\" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/almasaeed2010/adminlte" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/composer" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/firebase/php-jwt" />

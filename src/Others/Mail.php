@@ -1,5 +1,6 @@
 <?php
-namespace Entity;
+namespace Others;
+
 use PHPMailer\PHPMailer\PHPMailer;
 use Others\Configuration as config;
 

@@ -25,7 +25,7 @@ class Configuration
             $controllerName = $_GET['controller'];
 
             $className = "Controller\\" . $controllerName;
-
+            // TODO : filtrage controller 
             if (class_exists($className)) {
                 $controller = new $className();
 

@@ -3,7 +3,6 @@ require ('vendor/autoload.php');
 
 use Others\Authentification;
 use Others\Configuration;
-use Entity\Mail;
 
 error_reporting(E_ALL);
 

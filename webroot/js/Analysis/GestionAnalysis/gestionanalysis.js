@@ -21,6 +21,7 @@ $(document).ready(function () {
                 className: 'text-center',
                 width: '20%',
                 data: 'shortName',
+                visible: false,
                 render: function (data,b, row) {
                     return `<input data-update="shortName" data-id="${row.id}" class="form-control" value="${data}"/>`;
                 }
@@ -30,6 +31,7 @@ $(document).ready(function () {
                 title: 'Unité de mesure',
                 className: 'text-center',
                 data: 'unitType',
+                width: '20%',
                 render: function (data,b, row) {
                     return `<input data-update="unitType" data-id="${row.id}" class="form-control" value="${data}"/>`;
                 }
@@ -37,6 +39,7 @@ $(document).ready(function () {
             {
                 title: 'Couleur',
                 className: 'text-center',
+                width: '10%',
                 render: function (ctx, data, row) {
                     return "<input data-update='color' data-id='" + row.id + "' class='cp' style='background-color: " + row.color + ";height: 30px;width: 30px; margin: auto;'/>"
                 }
@@ -45,17 +48,18 @@ $(document).ready(function () {
                 title: 'Valeur critique',
                 className: 'text-center',
                 data: 'criticalValue',
+                width: '20%',
                 render: function (data,b, row) {
                     return `<input data-update="criticalValue" data-id="${row.id}" class="form-control" value="${data}"/>`;
                 }
             },
         ],
         "paging": false,
-        "ordering": true,
+        "ordering": false,
         "searching": false,
         "scrollCollapse": true,
         "responsive": true,
-        "scrollY": '50vh',
+        "scrollY": '100%',
         "info": true,
         "lengthMenu": [5, 10, 25, 50, 100],
         "language": {

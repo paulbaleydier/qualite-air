@@ -19,7 +19,7 @@ class GestionAnalysis extends View
 
     public function contentBody()
     {
-?>
+        ?>
 
         <div class="content-wrapper">
 
@@ -28,6 +28,11 @@ class GestionAnalysis extends View
                     <div class="row">
                         <div class="col-md-12 mt-2">
                             <div class="card">
+                                <div class="card-header row">
+                                    <div class="col-md-6">
+                                        <h1 class="text-left mt-2">Paramètrage mesures</h1>
+                                    </div>
+                                </div>
                                 <div class="card-body">
                                     <table class="table" id="DtAnalysisType"></table>
                                 </div>
@@ -41,7 +46,7 @@ class GestionAnalysis extends View
 
         </div>
 
-<?php
+        <?php
     }
 }
 ?>

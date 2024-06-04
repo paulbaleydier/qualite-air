@@ -24,11 +24,28 @@ class View
         // self::$controller = str_replace("View", "Controller", get_called_class());
 
     }
+    public function getStatsSideBar()
+    {
+        if (isset($_SESSION["_cache"]["sideBar"])) {
+            $status = $_SESSION["_cache"]["sideBar"];
+            return $status == "true";
+        }
+        return false;
+    }
+
+    public function getThemeDark()
+    {
+        if (isset($_SESSION["_cache"]["darkTheme"])) {
+            $status = $_SESSION["_cache"]["darkTheme"];
+            return $status == "true";
+        }
+        return false;
+    }
 
     public function sideBar()
     {
         ?>
-        <aside class="main-sidebar sidebar-dark-primary elevation-4">
+        <aside class="main-sidebar <?php echo ($this->getThemeDark() == true ? "sidebar-dark-primary" : "sidebar-light-primary") ?> elevation-4">
             <!-- Brand Logo -->
 
 
@@ -39,13 +56,19 @@ class View
             </a>
 
             <!-- Sidebar -->
-            <div class="sidebar">
+            <div class="sidebar ">
                 <!-- Sidebar user panel -->
 
                 <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-                    <div class="info">
-                        <a href="#"
-                            class="d-block"><?php echo ucfirst($_SESSION["nom"] ?? "") . " " . ucfirst($_SESSION["prenom"] ?? "") ?></a>
+                    <!-- <div class="shortName image d-sm-none d-md-block">
+                    </div> -->
+                    <div class="info d-none d-md-block">
+                        <a href="index.php?controller=Settings&view=UserManager"
+                            class="d-block"><?php echo ucfirst($_SESSION["prenom"] ?? "") . " " . ucfirst($_SESSION["nom"] ?? "") ?></a>
+                    </div>
+                    <div class="fullName d-md-none">
+                        <a href="index.php?controller=Settings&view=UserManager"
+                            class="d-block"><?php echo ucfirst($_SESSION["prenom"] ?? "") . " " . ucfirst($_SESSION["nom"] ?? "") ?></a>
                     </div>
                 </div>
 
@@ -60,8 +83,9 @@ class View
                             </a>
                         </li>
 
+
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a class="nav-link">
                                 <i class="nav-icon fa-solid fa-gear"></i>
                                 <p>
                                     Paramètres
@@ -82,7 +106,7 @@ class View
                                     <li class="nav-item">
                                         <a href="index.php?controller=Settings&view=UsersManagement" class="nav-link">
                                             <i class="far fa-circle nav-icon"></i>
-                                            <p>Gestion Utilisateur(s)</p>
+                                            <p>Gestion utilisateurs</p>
                                         </a>
                                     </li>
                                 <?php } ?>
@@ -91,19 +115,19 @@ class View
                                     <li class="nav-item">
                                         <a href="index.php?controller=Analysis&view=GestionAnalysis" class="nav-link">
                                             <i class="far fa-circle nav-icon"></i>
-                                            <p>Gestion Analyse</p>
+                                            <p>Paramètrage mesures</p>
                                         </a>
                                     </li>
                                 <?php } ?>
                             </ul>
                         </li>
                         <?php if (Utilisateur::hasPermission(Utilisateur::ADMIN)) { ?>
-                            <li class="nav-item">
+                            <!-- <li class="nav-item">
                                 <a href="index.php?controller=Dev&view=Dev" class="nav-link">
                                     <i class="nav-icon fa-solid fa-code"></i>
                                     <p> Dev </p>
                                 </a>
-                            </li>
+                            </li> -->
                         <?php } ?>
                     </ul>
 
@@ -134,26 +158,26 @@ class View
 
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link text-dark" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+                    <a class="nav-link" data-widget="pushmenu" id="btnSideBarCollapse"><i class="fas fa-bars"></i></a>
                 </li>
 
             </ul>
 
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                    <button class="text-dark nav-link toggle-dark-mode btn ">
+                    <a class=" nav-link toggle-dark-mode ">
                         <i class="fas fa-moon"></i>
-                    </button>
+                    </a>
                 </li>
 
 
                 <li class="nav-item">
-                    <a class="text-dark nav-link" data-widget="fullscreen" href="#" role="button">
+                    <a class="nav-link" data-widget="fullscreen">
                         <i class="fas fa-expand-arrows-alt"></i>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="text-dark nav-link" href="index.php?controller=Authentification&action=logout" role="button">
+                    <a class=" nav-link" href="index.php?controller=Authentification&action=logout">
                         <i class="fas fa-door-open"></i>
                     </a>
                 </li>
@@ -182,7 +206,7 @@ class View
                     </div>
                     <div class="modal-body">
                         <ul id="notifications-list" class="list-group">
-                            
+
                         </ul>
                     </div>
                     <div class="modal-footer">
@@ -202,9 +226,9 @@ class View
     {
         ?>
         <footer class="main-footer">
-            <strong>Copyright © 2024 PVM-TECH.</strong>
+            <strong>QDA © 2024.</strong>
             <div class="float-right d-none d-sm-inline-block">
-                <b>Version</b> 0.0.1
+                <b>Version</b> 1.0.0
             </div>
         </footer>
         <?php
@@ -232,7 +256,8 @@ class View
 
         </head>
 
-        <body class="hold-transition sidebar-mini">
+        <body
+            class="hold-transition sidebar-mini <?php echo ($this->getStatsSideBar() == true ? "sidebar-collapse" : "") ?> <?php echo ($this->getThemeDark() == true ? "dark-mode" : "") ?>">
             <!-- <body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed sidebar-collapse"> -->
             <div class="wrapper">
                 <?php if (static::$header)

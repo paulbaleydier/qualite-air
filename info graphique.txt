@@ -14,3 +14,10 @@ Autres :
 Dioxyde de carbonne (CO2) : 400 à 10000ppm
 Humidité : 0 à 100%
 Température : -40 à 70°C
+
+
+systemctl status apache2
+systemctl status mariadb
+systemctl status php8.2-fpm.service
+
+mosquitto_pub -h localhost -t "your/topic" -m '{"type": "CO2", "values": [{"value": 9.666, "timestamp": "2024-05-30 9:10:00"}, {"value": 8, "timestamp": "2025-05-21 14:00:00"}]}' -u "root" -P "Passw0rd%1"

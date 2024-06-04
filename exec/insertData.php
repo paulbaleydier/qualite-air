@@ -42,6 +42,9 @@ $capteurs = array(
     6 => ((mt_rand() / mt_getrandmax()) * 50),
     7 => ((mt_rand() / mt_getrandmax()) * 25),
     8 => ((mt_rand() / mt_getrandmax()) * 50),
+    9 => ((mt_rand() / mt_getrandmax()) * 30),
+    10 => ((mt_rand() / mt_getrandmax()) * 100),
+    11 => ((mt_rand() / mt_getrandmax()) * 1000),
 );
 
 // Parcourir les capteurs et insérer les données dans la base de données

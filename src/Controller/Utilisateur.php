@@ -2,13 +2,15 @@
 
 namespace Controller;
 
-use Entity\Mail as EntityMail;
+use Others\Mail as EntityMail;
 use Entity\UserResetMdp;
 use Entity\Utilisateur as EntityUtilisateur;
 use Exception;
 use Model\UserResetMdp as ModelUserResetMdp;
 use Model\Utilisateur as ModelUser;
 use Model\Utilisateur as ModelUtilisateur;
+use Model\AnalysisAlerts;
+use Entity\AnalysisAlerts as AnalysisAlertsEntity;
 use Others\Reponse;
 
 
@@ -145,7 +147,32 @@ class Utilisateur extends Controller
 
     }
 
+    public function changeSideBarStatus(){
+        if (!filter_has_var(INPUT_POST, "status")) {
+            Reponse::create(Reponse::ERROR, "Paramètre incorrect.")->sendJson();
+        }
+        $status = filter_input(INPUT_POST, "status");
+
+
+        $_SESSION["_cache"]["sideBar"] = $status;
+
+        EntityUtilisateur::saveCache();
+
+        Reponse::create(Reponse::OK, "ok")->sendJson();
+    }
+
     public function getCache() {
         Reponse::create(Reponse::OK, $_SESSION["_cache"])->sendJson();
+    }
+
+    public function sendAlertDev(){
+        $alert = new AnalysisAlertsEntity(array("typeID" => 1, "value" => rand(0, 100)));
+        AnalysisAlerts::insertObject($alert);
+        Reponse::create(Reponse::OK, "ok")->sendJson();
+    }
+
+    public function clearAlertDev() {
+        AnalysisAlerts::clearData();
+        Reponse::create(Reponse::OK, "ok")->sendJson();
     }
 }

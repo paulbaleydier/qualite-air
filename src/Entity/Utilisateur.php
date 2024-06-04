@@ -17,6 +17,7 @@ class Utilisateur extends Entity  {
     public string|null $_cache;
 
     // Enumérations permissions
+    const DEV = 2;
     const ADMIN = 1;
     const USER = 2;
 

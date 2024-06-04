@@ -56,14 +56,14 @@ class Dashboard extends View
                         <div class="col-md-12 mt-3">
                             <div class="card">
                                 <div class="card-header">
-                                    Information sur la journée
+                                    Pourcentage du seuil maximal sur 24 heures
                                 </div>
                                 <div class="card-body body-stats">
 
                                 </div>
-                                <div class="card-footer">
+                                <!-- <div class="card-footer">
                                     Ces compteurs affichent le taux en pourcentage des différents capteurs en fonction des taux maximums.
-                                </div>
+                                </div> -->
                             </div>
                         </div>
 
@@ -71,10 +71,13 @@ class Dashboard extends View
                             <div class="card">
                                 <div class="card-header">
                                     <ul class="nav nav-pills ml-auto p-2">
-                                        <li class="nav-item switchChart"><a class="nav-link active" href="#tab_all_usualgas" data-toggle="tab">ALL</a></li>
-                                        <li class="nav-item switchChart"><a class="nav-link " href="#tab_no2" data-toggle="tab">NO2</a></li>
-                                        <li class="nav-item switchChart"><a class="nav-link" href="#tab_co" data-toggle="tab">CO</a></li>
-                                        <li class="nav-item switchChart"><a class="nav-link" href="#tab_h2" data-toggle="tab">H2</a></li>
+                                        <li class="nav-item switchChart"><a class="nav-link active" href="#tab_all_usualgas" data-toggle="tab">TOUT</a></li>
+                                        <li class="nav-item switchChart"><a class="nav-link " href="#tab_no2" data-toggle="tab">Dioxide d'azote</a></li>
+                                        <li class="nav-item switchChart"><a class="nav-link" href="#tab_co" data-toggle="tab">Monoxyde de carbone</a></li>
+                                        <li class="nav-item switchChart"><a class="nav-link" href="#tab_h2" data-toggle="tab">Hydrogène</a></li>
+                                        <li class="nav-item switchChart"><a class="nav-link" href="#tab_temp" data-toggle="tab">Température</a></li>
+                                        <li class="nav-item switchChart"><a class="nav-link" href="#tab_hum" data-toggle="tab">Humidité</a></li>
+                                        <li class="nav-item switchChart"><a class="nav-link" href="#tab_co2" data-toggle="tab">Dioxyde de carbone</a></li>
                                     </ul>
                                 </div>
                                 <div class="card-body">
@@ -99,6 +102,21 @@ class Dashboard extends View
                                                 <canvas id="chart-usualgas-h2" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
                                             </div>
                                         </div>
+                                        <div class="tab-pane" id="tab_temp">
+                                            <div class="chart-container">
+                                                <canvas id="chart-usualgas-temp" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
+                                            </div>
+                                        </div>
+                                        <div class="tab-pane" id="tab_hum">
+                                            <div class="chart-container">
+                                                <canvas id="chart-usualgas-hum" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
+                                            </div>
+                                        </div>
+                                        <div class="tab-pane" id="tab_co2">
+                                            <div class="chart-container">
+                                                <canvas id="chart-usualgas-co2" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
+                                            </div>
+                                        </div>
 
 
                                     </div>
@@ -111,10 +129,10 @@ class Dashboard extends View
                             <div class="card">
                                 <div class="card-header">
                                     <ul class="nav nav-pills ml-auto p-2">
-                                        <li class="nav-item switchChart"><a class="nav-link active" href="#tab_all_blendorganic" data-toggle="tab">ALL</a></li>
-                                        <li class="nav-item switchChart"><a class="nav-link " href="#tab_C2H5OH" data-toggle="tab">C2H5OH</a></li>
-                                        <li class="nav-item switchChart"><a class="nav-link" href="#tab_CH4" data-toggle="tab">CH4</a></li>
-                                        <li class="nav-item switchChart"><a class="nav-link" href="#tab_NH3" data-toggle="tab">NH3</a></li>
+                                        <li class="nav-item switchChart"><a class="nav-link active" href="#tab_all_blendorganic" data-toggle="tab">TOUT</a></li>
+                                        <li class="nav-item switchChart"><a class="nav-link " href="#tab_C2H5OH" data-toggle="tab">Ethanol</a></li>
+                                        <li class="nav-item switchChart"><a class="nav-link" href="#tab_CH4" data-toggle="tab">Methane</a></li>
+                                        <li class="nav-item switchChart"><a class="nav-link" href="#tab_NH3" data-toggle="tab">Amoniaque</a></li>
                                     </ul>
                                 </div>
                                 <div class="card-body">
@@ -154,9 +172,9 @@ class Dashboard extends View
                             <div class="card">
                                 <div class="card-header">
                                     <ul class="nav nav-pills ml-auto p-2">
-                                        <li class="nav-item switchChart"><a class="nav-link active" href="#tab_all_fineparticles" data-toggle="tab">ALL</a></li>
-                                        <li class="nav-item switchChart"><a class="nav-link " href="#tab_PM_2_5" data-toggle="tab">PM_2_5</a></li>
-                                        <li class="nav-item switchChart"><a class="nav-link" href="#tab_PM_10_0" data-toggle="tab">PM_10_0</a></li>
+                                        <li class="nav-item switchChart"><a class="nav-link active" href="#tab_all_fineparticles" data-toggle="tab">TOUT</a></li>
+                                        <li class="nav-item switchChart"><a class="nav-link " href="#tab_PM_2_5" data-toggle="tab">PM 2.5</a></li>
+                                        <li class="nav-item switchChart"><a class="nav-link" href="#tab_PM_10_0" data-toggle="tab">PM 10.0</a></li>
                                     </ul>
                                 </div>
                                 <duv class="card-body">

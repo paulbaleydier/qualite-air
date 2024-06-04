@@ -6,6 +6,8 @@ $(function () {
 	$('.toggle-dark-mode').click(function () {
 		var statusTheme = $('body').hasClass("dark-mode");
 		$('body').toggleClass('dark-mode');
+		$('.main-sidebar').toggleClass('sidebar-light-primary');
+		$('.main-sidebar').toggleClass('sidebar-dark-primary');
 		$(this).find('i').toggleClass('fa-moon fa-sun');
 
 		$.ajax({
@@ -15,8 +17,8 @@ $(function () {
 			dataType: 'JSON',
 			success: function (reponse) {
 				Swal.fire({
-					title: "Changement de thème",
-					text: "Le thème a été enregistré dans la base de données",
+					title: "Thème enregistré",
+					// text: "Le thème a été enregistré dans la base de données",
 					icon: "success",
 					showConfirmButton: false,
 					timer: 3000,
@@ -25,15 +27,15 @@ $(function () {
 				});
 			}
 		});
+
+
 	});
 
 	if (URL.get("controller") !== "Authentification") {
-		gestionCache();
 		showAlerts();
 
 		setInterval(function () {
 			showAlerts();
-
 		}, 5000)
 	}
 
@@ -67,6 +69,34 @@ $(function () {
 	})
 
 
+
+	$(document).on('click', '#btnSideBarCollapse', function () {
+		var status = $(".sidebar-collapse").length;
+		status = status !== 0;
+
+		$.ajax({
+			type: 'POST',
+			url: 'index.php?controller=Utilisateur&action=changeSideBarStatus',
+			data: { "status": status },
+		});
+
+	});
+
+	$(document).on('click', 'button', function () {
+		const buttons = document.querySelectorAll('button');
+
+		buttons.forEach(button => {
+			button.selected = false;
+		});
+	})
+
+	$(document).on('click', ".nav-link", function () {
+		$(this).parent().toggleClass("menu-is-opening menu-open")
+	})
+
+
+
+
 });
 
 function confirmationDialog(callback) {
@@ -86,27 +116,34 @@ function confirmationDialog(callback) {
 	});
 }
 
-function gestionCache() {
+// function gestionCache() {
 
-	$.ajax({
-		type: 'POST',
-		url: '?controller=Utilisateur&action=getCache',
-		dataType: 'JSON',
-		success: function (reponse) {
-			if (reponse && reponse?.status == 0 && reponse?.data) {
-				var data = reponse?.data;
+// 	$.ajax({
+// 		type: 'POST',
+// 		url: '?controller=Utilisateur&action=getCache',
+// 		dataType: 'JSON',
+// 		success: function (reponse) {
+// 			if (reponse && reponse?.status == 0 && reponse?.data) {
+// 				var data = reponse?.data;
 
-				if (data.hasOwnProperty("darkTheme")) {
-					let darkTheme = data.darkTheme;
-					if (darkTheme === "true") {
-						$('body').addClass("dark-mode");
-					}
-				}
-			}
-		}
-	});
+// 				// if (data.hasOwnProperty("darkTheme")) {
+// 				// 	let darkTheme = data.darkTheme;
+// 				// 	if (darkTheme === "true") {
+// 				// 		$('body').addClass("dark-mode");
+// 				// 	}
+// 				// }
 
-}
+// 				// if (data.hasOwnProperty("sideBar")) {
+// 				// 	let sideBar = data.sideBar;
+// 				// 	if (sideBar === "true") {
+// 				// 		$('.sidebar-mini').addClass("sidebar-collapse");
+// 				// 	}
+// 				// }
+// 			}
+// 		}
+// 	});
+
+// }
 
 function showAlerts() {
 	if ($(".swal2-container").length > 0) return;
@@ -134,7 +171,7 @@ function showAlerts() {
 						  	<strong><u> ${data.datefR}</u></strong>
 						  </p>
 						`,
-						confirmButtonText: 'Compris',
+						confirmButtonText: 'OK',
 						allowOutsideClick: false,
 						allowEscapeKey: false
 					}).then((result) => {

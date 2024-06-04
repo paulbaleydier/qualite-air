@@ -158,7 +158,8 @@ class Analysis extends Model
         JOIN analysis_type AS atype
             ON (atype.id = a.`type`)
         WHERE
-            DATE(a.ts) = CURDATE()
+            DATE(a.ts) = CURDATE() AND
+            atype.id <> 9
         GROUP BY a.type;
         ";
 

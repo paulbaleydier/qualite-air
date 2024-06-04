@@ -7,8 +7,7 @@
             "Controller\\": "src/Controller",
             "Entity\\": "src/Entity",
             "View\\": "src/View",
-            "Others\\": "src/Others",
-            "Commands\\": "src/Commands"
+            "Others\\": "src/Others"
         }
     },
     "authors": [
@@ -21,8 +20,5 @@
         "almasaeed2010/adminlte": "~3.2",
         "phpmailer/phpmailer": "^6.9",
         "google/apiclient": "^2.15.0"
-    },
-    "scripts": {
-        "sendalert": "php Commands/CommandTest::sendalert"
     }
 }

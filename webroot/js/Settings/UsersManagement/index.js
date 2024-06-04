@@ -19,18 +19,19 @@ $(document).ready(function () {
                 }
             },
             { 
-                title: 'Nom',
-                className: 'text-center',
-                width: '20%',
-                data: 'nom'
-            },
-            { 
                 title: 'Prénom',
                 className: 'text-center',
                 width: '20%',
                 data: 'prenom'
                 
             },
+            { 
+                title: 'Nom',
+                className: 'text-center',
+                width: '20%',
+                data: 'nom'
+            },
+            
             { 
                 title: 'Adresse Mail',
                 className: 'text-center',
@@ -51,15 +52,14 @@ $(document).ready(function () {
                 }
             }
         ],
-        "paging": true,         
-        "ordering": true,       
-        "searching": true,     
+        "paging": false,
+        "ordering": false,
+        "searching": false,
         "scrollCollapse": true,
-        // responsive: true,
         "responsive": true,
-        "scrollY": '50vh',
-        "info": true,         
-        "lengthMenu": [5, 10, 25, 50, 100],  
+        "scrollY": '100%',
+        "info": true,
+        "lengthMenu": [5, 10, 25, 50, 100],
         "language": {       
             "lengthMenu": "Afficher _MENU_ éléments par page",
             "zeroRecords": "Aucun résultat trouvé",

@@ -11,6 +11,30 @@ class Utilisateur extends Model {
     protected static $id = "id";
 
 
+
+    public static function getAll($query = "*")
+    {
+        $pdo = self::getInstance();
+
+        $sql = "SELECT $query FROM " . static::$table . " ORDER BY prenom,nom ASC";
+
+        $req = $pdo->query($sql);
+
+        if ($req->rowCount() > 0) {
+            $results = array();
+            $rows = $req->fetchAll(PDO::FETCH_ASSOC);
+            $className = "Entity\\" . ucfirst(substr(strrchr(get_called_class(), '\\'), 1));
+
+            foreach ($rows as $row) {
+                array_push($results, new $className($row));
+            }
+            return $results;
+
+        } else {
+            return array();
+        }
+    }
+
     public static function isExist($email, $password) {
         $model = self::getInstance();
 

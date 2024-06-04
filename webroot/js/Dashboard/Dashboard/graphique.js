@@ -110,7 +110,7 @@ function loadKnobStats() {
 }
 
 $(document).ready(function () {
-    drawChart("chart-usualgas-all", "1,2,3");
+    drawChart("chart-usualgas-all", "1,2,3,9,10,11");
     drawChart("chart-blendorganic-all", "4,5,6");
     drawChart("chart-fineparticles-all", "7,8");
     loadKnobStats();
@@ -132,8 +132,23 @@ $(document).ready(function () {
 
     });
 
+    $(document).on('click', '.switchChart a[href="#tab_temp"]', function () {
+        drawChart("chart-usualgas-temp", "9");
+
+    });
+
+    $(document).on('click', '.switchChart a[href="#tab_hum"]', function () {
+        drawChart("chart-usualgas-hum", "10");
+
+    });
+
+    $(document).on('click', '.switchChart a[href="#tab_co2"]', function () {
+        drawChart("chart-usualgas-co2", "11");
+
+    });
+
     $(document).on('click', '.switchChart a[href="#tab_all_usualgas"]', function () {
-        drawChart("chart-usualgas-all", "1,2,3");
+        drawChart("chart-usualgas-all", "1,2,3,9,10,11");
 
     });
 
@@ -202,7 +217,7 @@ function reloadChartByHref(hrefType) {
     switch (hrefType) {
 
         case "#tab_all_usualgas":
-            drawChart("chart-usualgas-all", "1,2,3");
+            drawChart("chart-usualgas-all", "1,2,3,9,10,11");
             break;
         case "#tab_no2":
             drawChart("chart-usualgas-no2", "1");
@@ -212,6 +227,12 @@ function reloadChartByHref(hrefType) {
             break;
         case "#tab_h2":
             drawChart("chart-usualgas-h2", "3");
+            break;
+        case "#tab_hum":
+            drawChart("chart-usualgas-hum", "10");
+            break;
+        case "#tab_co2":
+            drawChart("chart-usualgas-co2", "11");
             break;
         case "#tab_all_blendorganic":
             drawChart("chart-blendorganic-all", "4,5,6");
